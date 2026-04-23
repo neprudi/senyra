@@ -1,0 +1,45 @@
+"use client";
+
+import { useRouter } from 'next/navigation';
+import { AppFrame } from '@/components/app-frame';
+import { ExperienceCard } from '@/components/experience-card';
+import { getContext, getDiscoveryFeed, getMood } from '@/lib/senyra';
+import { usePrototype } from '@/lib/prototype-store';
+
+export default function DiscoverPage() {
+  const router = useRouter();
+  const { moodId, contextId, toggleSaved, isSaved } = usePrototype();
+  const mood = getMood(moodId);
+  const context = getContext(contextId);
+  const feed = getDiscoveryFeed(moodId, contextId);
+
+  return (
+    <AppFrame title="Discovery feed" eyebrow={`${mood.label} + ${context.label}`} backHref="/context">
+      <div className="space-y-5">
+        <div className="panel-strong rounded-[1.8rem] p-5 animate-rise">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-700/70">
+            Senyra curated this for a softer evening.
+          </p>
+          <h2 className="mt-2 max-w-[14ch] text-[2rem] font-semibold leading-[0.98] tracking-[-0.045em] text-graphite">
+            You do not need a list. You need a feeling that fits.
+          </h2>
+          <p className="mt-3 max-w-[31ch] text-[15px] leading-7 text-cream-800/80">
+            {mood.summary} Chosen for {context.summary.toLowerCase()}.
+          </p>
+        </div>
+
+        <div className="space-y-4">
+          {feed.map((experience) => (
+            <ExperienceCard
+              key={experience.slug}
+              experience={experience}
+              saved={isSaved(experience.slug)}
+              onToggleSave={() => toggleSaved(experience.slug)}
+              onOpen={() => router.push(`/experience/${experience.slug}`)}
+            />
+          ))}
+        </div>
+      </div>
+    </AppFrame>
+  );
+}

@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --bg: #fcfaf6;
+  --panel: rgba(255, 253, 249, 0.84);
+  --panel-strong: rgba(255, 251, 245, 0.96);
+  --line: rgba(75, 56, 39, 0.08);
+  --text: #2a2622;
+  --muted: rgba(42, 38, 34, 0.68);
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(121, 94, 67, 0.18);
+  color: #2a2622;
+}
+
+h1,
+h2,
+h3,
+.display {
+  font-family: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.panel {
+  background: var(--panel);
+  backdrop-filter: blur(22px);
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  box-shadow: 0 18px 50px rgba(55, 36, 22, 0.09);
+  transition:
+    transform 420ms var(--ease-premium),
+    box-shadow 420ms var(--ease-premium),
+    border-color 420ms var(--ease-soft),
+    background 420ms var(--ease-soft);
+}
+
+.panel-strong {
+  background: var(--panel-strong);
+  backdrop-filter: blur(22px);
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  box-shadow: 0 24px 70px rgba(55, 36, 22, 0.12);
+  transition:
+    transform 420ms var(--ease-premium),
+    box-shadow 420ms var(--ease-premium),
+    border-color 420ms var(--ease-soft),
+    background 420ms var(--ease-soft);
+}
+
+.panel:hover,
+.panel-strong:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 26px 80px rgba(55, 36, 22, 0.16);
+}
+
+.page-enter {
+  animation: fade-up 620ms var(--ease-premium) both;
+}
+
+.soft-enter {
+  animation: soft-scale 720ms var(--ease-premium) both;
+}
+
+.micro-rise {
+  animation: fade-up 520ms var(--ease-premium) both;
+}
+
+.soft-scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.soft-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(114, 89, 67, 0.18);
+  border-radius: 999px;
+}
+
+.soft-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@keyframes fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes soft-scale {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.985);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
