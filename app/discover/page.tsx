@@ -17,7 +17,7 @@ export default function DiscoverPage() {
   const feed = getDiscoveryFeed(moodId, contextId);
 
   return (
-    <AppFrame title="Discovery feed" eyebrow={`${mood.label} + ${context.label}`} backHref="/context">
+    <AppFrame title="Matched experiences" eyebrow={`${mood.label} + ${context.label}`} backHref="/plan">
       <div className="space-y-5">
         <div className="panel-strong rounded-[1.8rem] p-5 animate-rise">
           <div className="flex flex-wrap gap-2">
@@ -35,7 +35,7 @@ export default function DiscoverPage() {
             {insight.title}
           </h2>
           <p className="mt-3 max-w-[32ch] text-[15px] leading-7 text-cream-800/80">
-            {insight.copy}
+            {insight.copy} Food, places, and rituals matched to your mood.
           </p>
         </div>
 

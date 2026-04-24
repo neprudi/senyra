@@ -2,7 +2,8 @@
 
 import { AppFrame } from '@/components/app-frame';
 import { ArtPanel } from '@/components/art-panel';
-import { getMood, getProfileArchetype } from '@/lib/senyra';
+import Link from 'next/link';
+import { getMood, getProfileArchetype, plusBenefits } from '@/lib/senyra';
 import { usePrototype } from '@/lib/prototype-store';
 
 export const dynamic = 'force-dynamic';
@@ -73,6 +74,34 @@ export default function ProfilePage() {
           <p className="mt-2 text-[1.1rem] leading-8 text-graphite">
             Senyra understands your mood. You do not need a meal. You need a feeling.
           </p>
+        </section>
+
+        <section className="panel-strong rounded-[1.8rem] p-5">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-700/70">Senyra Plus</p>
+          <h3 className="mt-2 text-[1.6rem] font-semibold tracking-[-0.045em] leading-[0.98] text-graphite">
+            Your private layer of pleasure.
+          </h3>
+          <p className="mt-3 text-sm leading-7 text-cream-800/80">
+            Hidden Belgrade guides, weekly rituals, and deeper personal history live here.
+          </p>
+          <div className="mt-4 grid gap-2">
+            {plusBenefits.map((benefit) => (
+              <div
+                key={benefit}
+                className="rounded-[1.2rem] border border-cream-200/70 bg-cream-50/70 px-4 py-3 text-sm leading-6 text-cream-800/82"
+              >
+                {benefit}
+              </div>
+            ))}
+          </div>
+          <div className="mt-4">
+            <Link
+              href="/business"
+              className="inline-flex items-center justify-center rounded-full bg-graphite px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-50 shadow-glow transition hover:-translate-y-0.5"
+            >
+              For partners
+            </Link>
+          </div>
         </section>
       </div>
     </AppFrame>

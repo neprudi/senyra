@@ -40,6 +40,8 @@ export function SelectableCard({
           active ? 'opacity-100' : ''
         )}
       />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.18),transparent_36%)] opacity-70" />
+      <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/35 opacity-0 transition duration-500 group-hover:opacity-100" />
       <div className="relative flex h-full flex-col justify-between gap-4">
         <div className="space-y-2">
           {eyebrow ? (

@@ -25,16 +25,18 @@ export function ExperienceCard({ experience, onOpen, saved, onToggleSave, compac
         <div className="mt-4 space-y-4">
           <div className="flex items-start justify-between gap-3">
             <div className="space-y-2">
-              <div className="flex flex-wrap items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-cream-700/70">
-                <span>{experience.city}</span>
-                <span className="h-1 w-1 rounded-full bg-cream-400" />
-                <span>{experience.district}</span>
-                <span className="h-1 w-1 rounded-full bg-cream-400" />
-                <span>{experience.venueType}</span>
+              <div className="flex flex-wrap gap-2">
+                <span className="rounded-full border border-cream-200 bg-cream-50 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.22em] text-cream-700">
+                  Belgrade demo
+                </span>
+                <span className="rounded-full border border-cream-200 bg-cream-50 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-cream-700">
+                  {experience.venueType}
+                </span>
               </div>
               <h3 className="text-[1.75rem] font-semibold tracking-[-0.045em] leading-[0.98] text-graphite">
                 {experience.title}
               </h3>
+              <p className="max-w-[34ch] text-[15px] leading-7 text-cream-800/82">{experience.description}</p>
             </div>
             <button
               type="button"
@@ -50,8 +52,6 @@ export function ExperienceCard({ experience, onOpen, saved, onToggleSave, compac
               <Bookmark className={cn('h-4.5 w-4.5', saved && 'fill-current')} />
             </button>
           </div>
-
-          <p className="max-w-[36ch] text-[15px] leading-7 text-cream-800/82">{experience.description}</p>
 
           <div className="grid gap-3 rounded-[1.4rem] border border-cream-200/70 bg-cream-50/70 p-4 sm:grid-cols-2">
             <div className="space-y-1">
@@ -104,12 +104,12 @@ export function ExperienceCard({ experience, onOpen, saved, onToggleSave, compac
               onClick={onOpen}
               className="inline-flex items-center gap-2 rounded-full bg-graphite px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-50 transition duration-300 ease-out hover:-translate-y-0.5 hover:shadow-glow"
             >
-              Open experience
+              Open story
               <ArrowRight className="h-4 w-4" />
             </button>
             <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-700/70">
               <Share2 className="h-3.5 w-3.5" />
-              Saveable story
+              Save the feeling
             </div>
           </div>
         </div>

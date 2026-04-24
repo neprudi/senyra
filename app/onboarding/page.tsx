@@ -26,21 +26,26 @@ export default function OnboardingPage() {
     <AppFrame showNav={false} title={slide.title} eyebrow={slide.kicker} subtle>
       <div className="flex min-h-[calc(100vh-10rem)] flex-col justify-between gap-7">
         <div className="space-y-7 animate-rise">
-          <ArtPanel
-            palette={palette}
-            label="Choose how you want to feel."
-            className="h-[52vh] min-h-[400px] shadow-[0_26px_80px_rgba(74,48,31,0.18)]"
-          />
-          <div className="space-y-4">
+          <div className="panel-strong rounded-[1.8rem] p-5">
             <div className="flex flex-wrap gap-2">
               <span className="rounded-full border border-cream-200 bg-cream-50 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.22em] text-cream-700">
                 {demoCityLabel}
               </span>
               <span className="rounded-full border border-cream-200 bg-cream-50 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-cream-700">
-                Choose a feeling, not a venue
+                Emotional discovery, not search
               </span>
             </div>
-            <p className="max-w-[28ch] text-[15px] leading-7 text-cream-800/80">{slide.copy}</p>
+            <h2 className="mt-3 max-w-[15ch] text-[2.15rem] font-semibold leading-[0.94] tracking-[-0.05em] text-graphite">
+              {slide.title}
+            </h2>
+            <p className="mt-3 max-w-[32ch] text-[15px] leading-7 text-cream-800/82">{slide.copy}</p>
+          </div>
+          <ArtPanel
+            palette={palette}
+            label="Choose how you want to feel."
+            className="h-[48vh] min-h-[360px] shadow-[0_26px_80px_rgba(74,48,31,0.18)]"
+          />
+          <div className="space-y-4">
             <div className="flex items-center gap-2">
               {onboardingSlides.map((_, slideIndex) => (
                 <span

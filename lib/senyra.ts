@@ -49,6 +49,17 @@ export type DiscoveryInsight = {
   copy: string;
 };
 
+export type PlanStep = {
+  title: string;
+  copy: string;
+};
+
+export type MonetizationPath = {
+  title: string;
+  copy: string;
+  value: string;
+};
+
 export const moods: Array<{
   id: MoodId;
   label: string;
@@ -141,7 +152,7 @@ export const contexts: Array<{
 export const onboardingSlides = [
   {
     title: 'Not what to eat. How you want to feel.',
-    copy: 'Start with a feeling. End with an experience. Demo city: Belgrade.',
+    copy: 'Senyra turns your mood into a food experience. Demo city: Belgrade.',
     kicker: 'New category'
   },
   {
@@ -160,6 +171,46 @@ export const onboardingSlides = [
     kicker: 'Built to feel real'
   }
 ];
+
+export const planSteps: PlanStep[] = [
+  {
+    title: 'Reading your mood',
+    copy: 'Senyra looks for softness, tension, energy, or recovery before it chooses anything else.'
+  },
+  {
+    title: 'Matching food, atmosphere, and ritual',
+    copy: 'The model connects a place, a dish, a setting, and a next action into one coherent feeling.'
+  },
+  {
+    title: 'Creating your evening',
+    copy: 'What you get is not a list. It is a plan that helps the night feel intentional.'
+  }
+];
+
+export const monetizationPaths: MonetizationPath[] = [
+  {
+    title: 'Featured Mood Placement',
+    copy: 'Restaurants pay to appear inside high-intent emotional moments, when the user is ready to choose.',
+    value: 'High-intent discovery'
+  },
+  {
+    title: 'Curated Experience Campaigns',
+    copy: 'Brands and venues sponsor seasonal mood-based collections built around specific emotional states.',
+    value: 'Sponsored collections'
+  },
+  {
+    title: 'Premium Membership',
+    copy: 'Users unlock mood history, saved rituals, private guides, hidden city layers, and deeper recommendations.',
+    value: 'Recurring consumer revenue'
+  }
+];
+
+export const plusBenefits = [
+  'Personal Pleasure Profile',
+  'Hidden Belgrade guides',
+  'Weekly mood rituals',
+  'Date-night and solo-reset collections'
+] as const;
 
 export const experiences: Experience[] = [
   {

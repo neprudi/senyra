@@ -1,5 +1,6 @@
 "use client";
 
+import Link from 'next/link';
 import { ArrowUpRight, Bookmark, MapPinned, Share2, UtensilsCrossed } from 'lucide-react';
 import { ArtPanel } from '@/components/art-panel';
 import { cn } from '@/components/cn';
@@ -9,6 +10,9 @@ import { usePrototype } from '@/lib/prototype-store';
 export default function ExperienceDetailScreen({ experience }: { experience: Experience }) {
   const { isSaved, toggleSaved } = usePrototype();
   const saved = isSaved(experience.slug);
+  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+    `${experience.title} Belgrade`
+  )}`;
 
   const onShare = async () => {
     const shareUrl =
@@ -43,7 +47,7 @@ export default function ExperienceDetailScreen({ experience }: { experience: Exp
               </span>
             </div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-700/70">
-              {experience.city} · {experience.district}
+              {experience.city} - {experience.district}
             </p>
             <h2 className="max-w-[11ch] text-[2.15rem] font-semibold leading-[0.94] tracking-[-0.045em] text-graphite">
               {experience.title}
@@ -118,13 +122,15 @@ export default function ExperienceDetailScreen({ experience }: { experience: Exp
           <Share2 className="h-4 w-4" />
           Share
         </button>
-        <button
-          type="button"
+        <Link
+          href={mapsUrl}
+          target="_blank"
+          rel="noreferrer"
           className="inline-flex items-center justify-center gap-2 rounded-full bg-graphite px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-50 shadow-glow transition hover:-translate-y-0.5"
         >
           <MapPinned className="h-4 w-4" />
-          Map / Book
-        </button>
+          Open in Maps
+        </Link>
       </div>
 
       <section className="panel rounded-[1.8rem] p-5">

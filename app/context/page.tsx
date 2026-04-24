@@ -47,7 +47,7 @@ export default function ContextPage() {
               active={contextId === context.id}
               onClick={() => {
                 setContextId(context.id);
-                router.push('/discover');
+                router.push('/plan');
               }}
             />
           ))}

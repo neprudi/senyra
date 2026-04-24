@@ -36,9 +36,11 @@ export function AppFrame({
   const pathname = usePathname();
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(214,197,171,0.42),_transparent_38%),linear-gradient(180deg,_#fcfaf6_0%,_#f3ece1_48%,_#efe7db_100%)] text-graphite">
-      <div className="pointer-events-none fixed inset-0 bg-[linear-gradient(120deg,rgba(115,94,70,0.08),transparent_28%,transparent_72%,rgba(140,153,113,0.09))] opacity-70" />
-      <div className="pointer-events-none fixed inset-0 bg-[url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22180%22 height=%22180%22 viewBox=%220 0 180 180%22%3E%3Cfilter id=%22n%22 x=%220%22 y=%220%22 width=%22180%22 height=%22180%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.78%22 numOctaves=%222%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22180%22 height=%22180%22 filter=%22url(%23n)%22 opacity=%220.12%22/%3E%3C/svg%3E')] opacity-35 mix-blend-multiply" />
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(214,197,171,0.42),_transparent_34%),radial-gradient(circle_at_20%_14%,_rgba(164,176,137,0.2),_transparent_26%),radial-gradient(circle_at_80%_18%,_rgba(128,92,66,0.18),_transparent_24%),linear-gradient(180deg,_#fefbf7_0%,_#f4ede2_46%,_#ece2d5_100%)] text-graphite">
+      <div className="pointer-events-none fixed inset-0 bg-[linear-gradient(120deg,rgba(115,94,70,0.08),transparent_25%,transparent_74%,rgba(140,153,113,0.11))] opacity-80" />
+      <div className="pointer-events-none fixed -left-24 top-16 h-72 w-72 rounded-full bg-[#d4b48f]/24 blur-3xl" />
+      <div className="pointer-events-none fixed right-[-4rem] top-[18%] h-80 w-80 rounded-full bg-[#a6b592]/22 blur-3xl" />
+      <div className="pointer-events-none fixed inset-0 bg-[url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22180%22 height=%22180%22 viewBox=%220 0 180 180%22%3E%3Cfilter id=%22n%22 x=%220%22 y=%220%22 width=%22180%22 height=%22180%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.78%22 numOctaves=%222%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22180%22 height=%22180%22 filter=%22url(%23n)%22 opacity=%220.12%22/%3E%3C/svg%3E')] opacity-30 mix-blend-multiply" />
       <div className="relative mx-auto flex min-h-screen w-full max-w-[460px] flex-col px-4 pb-30 pt-5 sm:px-5 md:py-6">
         <header className="mb-6 flex items-start justify-between gap-4">
           <div className="space-y-3">
