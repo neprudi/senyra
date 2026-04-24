@@ -47,7 +47,7 @@ export default function CollectionsPage() {
             Moments worth keeping close.
           </h2>
           <p className="mt-3 max-w-[31ch] text-[15px] leading-7 text-cream-800/80">
-            Current pleasure lens: {mood.label.toLowerCase()}. Senyra turns saved places into a personal library of moods.
+            Current pleasure lens: {mood.label.toLowerCase()}. Senyra turns saved places into a personal Belgrade library of moods.
           </p>
         </div>
 

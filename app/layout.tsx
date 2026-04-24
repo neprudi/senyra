@@ -7,10 +7,11 @@ export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Senyra',
-    template: '%s - Senyra'
+    default: 'SENYRA',
+    template: '%s - SENYRA'
   },
-  description: 'Senyra is a pleasure-through-food discovery app for moods, moments, and rituals.'
+  description:
+    'SENYRA helps people choose how they want to feel and matches that feeling with food, places, and rituals. Demo city: Belgrade.'
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {

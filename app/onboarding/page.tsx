@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 import { AppFrame } from '@/components/app-frame';
 import { ArtPanel } from '@/components/art-panel';
-import { onboardingSlides } from '@/lib/senyra';
+import { demoCityLabel, onboardingSlides } from '@/lib/senyra';
 
 export const dynamic = 'force-dynamic';
 
@@ -32,6 +32,14 @@ export default function OnboardingPage() {
             className="h-[52vh] min-h-[400px] shadow-[0_26px_80px_rgba(74,48,31,0.18)]"
           />
           <div className="space-y-4">
+            <div className="flex flex-wrap gap-2">
+              <span className="rounded-full border border-cream-200 bg-cream-50 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.22em] text-cream-700">
+                {demoCityLabel}
+              </span>
+              <span className="rounded-full border border-cream-200 bg-cream-50 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-cream-700">
+                Choose a feeling, not a venue
+              </span>
+            </div>
             <p className="max-w-[28ch] text-[15px] leading-7 text-cream-800/80">{slide.copy}</p>
             <div className="flex items-center gap-2">
               {onboardingSlides.map((_, slideIndex) => (
@@ -53,12 +61,12 @@ export default function OnboardingPage() {
             </p>
             <p className="mt-2 text-sm leading-6 text-cream-800/85">
               {index === 0
-                ? 'Choose how you want to feel tonight.'
+                ? 'Not what to eat. How you want to feel.'
                 : index === 1
-                  ? 'Food matched to your mood.'
+                  ? 'Food, places, and rituals matched to your mood.'
                   : index === 2
-                    ? 'Not what to eat. How you want to feel.'
-                    : 'Senyra curated this for a softer evening.'}
+                    ? 'Start with a feeling. End with an experience.'
+                    : 'Senyra is building the emotional discovery layer for food experiences.'}
             </p>
           </div>
 

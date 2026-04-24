@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { AppFrame } from '@/components/app-frame';
 import { SelectableCard } from '@/components/selectable-card';
-import { contexts, getMood } from '@/lib/senyra';
+import { contexts, demoCityLabel, getMood } from '@/lib/senyra';
 import { usePrototype } from '@/lib/prototype-store';
 
 export const dynamic = 'force-dynamic';
@@ -21,12 +21,19 @@ export default function ContextPage() {
     >
       <div className="space-y-5">
         <div className="panel-strong rounded-[1.8rem] p-5 animate-rise">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-700/70">Selected mood</p>
+          <div className="flex flex-wrap gap-2">
+            <span className="rounded-full border border-cream-200 bg-cream-50 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.22em] text-cream-700">
+              {demoCityLabel}
+            </span>
+            <span className="rounded-full border border-cream-200 bg-cream-50 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-cream-700">
+              Emotional state first
+            </span>
+          </div>
           <h2 className="mt-2 text-[2rem] font-semibold tracking-[-0.045em] leading-[0.98] text-graphite">
-            {mood.description}
+            The context gives the feeling a shape.
           </h2>
           <p className="mt-3 max-w-[30ch] text-[15px] leading-7 text-cream-800/80">
-            Choose the context that gives the mood its shape.
+            {mood.description}
           </p>
         </div>
 

@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { AppFrame } from '@/components/app-frame';
 import { ExperienceCard } from '@/components/experience-card';
-import { getContext, getDiscoveryFeed, getDiscoveryInsight, getMood } from '@/lib/senyra';
+import { demoCityLabel, getContext, getDiscoveryFeed, getDiscoveryInsight, getMood } from '@/lib/senyra';
 import { usePrototype } from '@/lib/prototype-store';
 
 export const dynamic = 'force-dynamic';
@@ -20,7 +20,15 @@ export default function DiscoverPage() {
     <AppFrame title="Discovery feed" eyebrow={`${mood.label} + ${context.label}`} backHref="/context">
       <div className="space-y-5">
         <div className="panel-strong rounded-[1.8rem] p-5 animate-rise">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-700/70">
+          <div className="flex flex-wrap gap-2">
+            <span className="rounded-full border border-cream-200 bg-cream-50 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.22em] text-cream-700">
+              {demoCityLabel}
+            </span>
+            <span className="rounded-full border border-cream-200 bg-cream-50 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-cream-700">
+              {mood.label} + {context.label}
+            </span>
+          </div>
+          <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-700/70">
             {insight.eyebrow}
           </p>
           <h2 className="mt-2 max-w-[15ch] text-[2rem] font-semibold leading-[0.98] tracking-[-0.045em] text-graphite">

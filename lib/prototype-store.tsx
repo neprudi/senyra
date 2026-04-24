@@ -24,7 +24,7 @@ const STORAGE_KEY = 'senyra:prototype-state';
 const defaultState: PrototypeState = {
   moodId: 'comfort',
   contextId: 'slow-evening',
-  savedSlugs: ['ember-table', 'soft-archive']
+  savedSlugs: ['cellar-mina', 'sava-current']
 };
 
 const PrototypeContext = createContext<PrototypeContextValue | null>(null);

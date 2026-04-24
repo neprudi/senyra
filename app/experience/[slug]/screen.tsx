@@ -34,6 +34,14 @@ export default function ExperienceDetailScreen({ experience }: { experience: Exp
       <section className="panel-strong rounded-[1.8rem] p-5">
         <div className="flex items-start justify-between gap-3">
           <div className="space-y-2">
+            <div className="flex flex-wrap gap-2">
+              <span className="rounded-full border border-cream-200 bg-cream-50 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.22em] text-cream-700">
+                Belgrade demo
+              </span>
+              <span className="rounded-full border border-cream-200 bg-cream-50 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-cream-700">
+                {experience.venueType}
+              </span>
+            </div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-700/70">
               {experience.city} · {experience.district}
             </p>
@@ -66,17 +74,14 @@ export default function ExperienceDetailScreen({ experience }: { experience: Exp
               {tag}
             </span>
           ))}
-          <span className="rounded-full border border-cream-200 bg-cream-50 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-cream-700">
-            {experience.price}
-          </span>
         </div>
       </section>
 
       <section className="grid gap-3 sm:grid-cols-2">
-        <InfoBlock title="Best for" items={experience.bestFor} />
-        <InfoBlock title="Ideal moment" items={[experience.idealMoment]} />
-        <InfoBlock title="Atmosphere" items={experience.atmosphere} />
-        <InfoBlock title="Signature dishes" items={experience.signatureDishes} />
+        <InfoBlock title="Feeling it serves" items={[experience.feelingServes]} />
+        <InfoBlock title="Best context" items={[experience.bestContext]} />
+        <InfoBlock title="Suggested dish" items={[experience.suggestedDish]} />
+        <InfoBlock title="Suggested ritual" items={[experience.ritualSuggestion]} />
       </section>
 
       <section className="panel-strong rounded-[1.8rem] p-5">
@@ -84,11 +89,24 @@ export default function ExperienceDetailScreen({ experience }: { experience: Exp
           Why this works for you
         </p>
         <p className="mt-2 text-[15px] leading-7 text-cream-800/84">{experience.whyThisWorks}</p>
+        <div className="mt-4 rounded-[1.35rem] border border-cream-200/70 bg-cream-50/70 p-4">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-cream-700/65">Tonight's read</p>
+          <p className="mt-2 text-sm leading-6 text-cream-800/82">{experience.whyTonight}</p>
+        </div>
       </section>
 
       <section className="panel-strong rounded-[1.8rem] p-5">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-700/70">Ritual suggestion</p>
-        <p className="mt-2 text-[15px] leading-7 text-cream-800/84">{experience.ritualSuggestion}</p>
+        <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-700/70">Atmosphere</p>
+        <div className="mt-3 flex flex-wrap gap-2">
+          {experience.atmosphere.map((item) => (
+            <span
+              key={item}
+              className="rounded-full border border-cream-200 bg-cream-50 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-cream-700"
+            >
+              {item}
+            </span>
+          ))}
+        </div>
       </section>
 
       <div className="grid gap-3 sm:grid-cols-2">

@@ -26,11 +26,11 @@ export function ExperienceCard({ experience, onOpen, saved, onToggleSave, compac
           <div className="flex items-start justify-between gap-3">
             <div className="space-y-2">
               <div className="flex flex-wrap items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-cream-700/70">
-                <span>{experience.district}</span>
-                <span className="h-1 w-1 rounded-full bg-cream-400" />
                 <span>{experience.city}</span>
                 <span className="h-1 w-1 rounded-full bg-cream-400" />
-                <span>{experience.price}</span>
+                <span>{experience.district}</span>
+                <span className="h-1 w-1 rounded-full bg-cream-400" />
+                <span>{experience.venueType}</span>
               </div>
               <h3 className="text-[1.75rem] font-semibold tracking-[-0.045em] leading-[0.98] text-graphite">
                 {experience.title}
@@ -52,6 +52,33 @@ export function ExperienceCard({ experience, onOpen, saved, onToggleSave, compac
           </div>
 
           <p className="max-w-[36ch] text-[15px] leading-7 text-cream-800/82">{experience.description}</p>
+
+          <div className="grid gap-3 rounded-[1.4rem] border border-cream-200/70 bg-cream-50/70 p-4 sm:grid-cols-2">
+            <div className="space-y-1">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-cream-700/65">
+                Feeling it serves
+              </p>
+              <p className="text-sm leading-6 text-cream-800/82">{experience.feelingServes}</p>
+            </div>
+            <div className="space-y-1">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-cream-700/65">
+                Best context
+              </p>
+              <p className="text-sm leading-6 text-cream-800/82">{experience.bestContext}</p>
+            </div>
+            <div className="space-y-1">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-cream-700/65">
+                Suggested dish
+              </p>
+              <p className="text-sm leading-6 text-cream-800/82">{experience.suggestedDish}</p>
+            </div>
+            <div className="space-y-1">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-cream-700/65">
+                Suggested ritual
+              </p>
+              <p className="text-sm leading-6 text-cream-800/82">{experience.ritualSuggestion}</p>
+            </div>
+          </div>
 
           <div className="space-y-2 border-t border-cream-200/70 pt-3">
             <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-cream-700/65">

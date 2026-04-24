@@ -24,11 +24,16 @@ export type Experience = {
   district: string;
   city: string;
   price: '$' | '$$' | '$$$';
+  venueType: string;
   moodIds: MoodId[];
   contextIds: ContextId[];
   vibeTags: string[];
   fitLabel: string;
+  feelingServes: string;
   description: string;
+  bestContext: string;
+  suggestedDish: string;
+  whyTonight: string;
   bestFor: string[];
   idealMoment: string;
   atmosphere: string[];
@@ -135,189 +140,233 @@ export const contexts: Array<{
 
 export const onboardingSlides = [
   {
-    title: 'Senyra understands your mood.',
-    copy: 'Choose how you want to feel tonight. Senyra starts with feeling, not filters.',
+    title: 'Not what to eat. How you want to feel.',
+    copy: 'Start with a feeling. End with an experience. Demo city: Belgrade.',
     kicker: 'New category'
   },
   {
-    title: 'Food matched to your mood.',
-    copy: 'Senyra translates emotion into places, dishes, and rituals that feel specific and alive.',
+    title: 'Food, places, and rituals matched to your mood.',
+    copy: 'Senyra is not a restaurant search app. It translates emotional state into atmosphere, dish, and ritual.',
     kicker: 'Emotion to intention'
   },
   {
-    title: 'Not what to eat. How you want to feel.',
-    copy: 'The result is an editorial, sensory guide to the kind of night that stays with you.',
+    title: 'Choose the feeling. We shape the night.',
+    copy: 'A quiet wine bar, a riverside dinner, or a late-night bakery ritual only appears when it fits how you want to feel.',
     kicker: 'Experience design'
   },
   {
-    title: 'A small pleasure can reset everything.',
-    copy: 'Senyra curated this for a softer evening. Save the nights that fit you.',
+    title: 'Senyra is building the emotional discovery layer for food experiences.',
+    copy: 'This is a new consumer category, starting with everyday pleasure in Belgrade.',
     kicker: 'Built to feel real'
   }
 ];
 
 export const experiences: Experience[] = [
   {
-    slug: 'ember-table',
-    title: 'Ember Table',
-    district: 'West Village',
-    city: 'New York',
+    slug: 'cellar-mina',
+    title: 'Cellar Mina',
+    district: 'Dorćol',
+    city: 'Belgrade',
+    venueType: 'quiet wine bar',
     price: '$$',
     moodIds: ['comfort', 'soft-indulgence', 'escape'],
     contextIds: ['solo', 'stay-home', 'slow-evening', 'quick-reset'],
     vibeTags: ['warm', 'quiet', 'dim'],
-    fitLabel: 'Chosen for warmth and ease.',
-    description: 'Warm, quiet, slightly dim - made for slowing down after a long day.',
+    fitLabel: 'Quiet reset, small plates, low noise.',
+    feelingServes: 'Soft landing',
+    description: 'A tucked-away wine room with candlelight, small plates, and a pace that drops your shoulders.',
+    bestContext: 'Solo reset or slow evening',
+    suggestedDish: 'Warm sourdough with whipped kajmak and roasted pepper oil',
+    whyTonight: 'It gives the evening a lower volume without making it feel empty.',
     bestFor: ['a reset after work', 'a private dinner', 'a low-lift comfort night'],
-    idealMoment: 'Arrive right as the city starts to soften.',
+    idealMoment: 'Arrive after dusk, when the city has started to soften.',
     atmosphere: ['low amber light', 'soft service', 'lingering pacing'],
-    signatureDishes: ['buttered rice with herbs', 'slow-roasted chicken', 'olive oil cake'],
+    signatureDishes: ['whipped kajmak and roasted pepper oil', 'smoked trout on sourdough', 'plum tart with sour cream'],
     whyThisWorks:
-      'The room keeps everything small and grounded: the noise falls away, textures deepen, and the whole meal feels like a soft landing.',
-    ritualSuggestion: 'Order one thing you know you will love, then one thing you have never tried.',
+      'The room feels almost private, so the night becomes less about choosing dinner and more about easing into a calmer state. Warm glass, soft salt, and a low hum make the whole experience feel restorative.',
+    ritualSuggestion: 'Order one glass of white wine, then pause before choosing the second plate.',
     palette: ['#7a5b45', '#b48b63', '#f5eadb']
   },
   {
-    slug: 'velvet-hour',
-    title: 'Velvet Hour',
-    district: 'SoHo',
-    city: 'New York',
+    slug: 'sava-current',
+    title: 'Sava Current',
+    district: 'Beton Hala',
+    city: 'Belgrade',
+    venueType: 'riverside slow dinner',
     price: '$$$',
     moodIds: ['sensuality', 'connection'],
     contextIds: ['date', 'special-night', 'go-out'],
     vibeTags: ['velvet', 'intimate', 'glow'],
-    fitLabel: 'Made for proximity and atmosphere.',
-    description: 'An intimate room with a polished edge and a slower pulse.',
+    fitLabel: 'Riverside, intimate, unhurried.',
+    feelingServes: 'Slow intimacy',
+    description: 'A river-facing dining room with quiet confidence, amber reflection, and a slow pulse.',
+    bestContext: 'Intimate date dinner',
+    suggestedDish: 'River trout with dill oil, leek ash, and new potatoes',
+    whyTonight: 'It turns a dinner into a moment by stretching the pacing and deepening the atmosphere.',
     bestFor: ['date night', 'an anniversary', 'a night that should feel marked'],
-    idealMoment: 'Book the table just before twilight.',
+    idealMoment: 'Book the table just before the light goes blue over the river.',
     atmosphere: ['low light', 'close tables', 'calm confidence'],
-    signatureDishes: ['charred prawns', 'hand-cut pasta', 'dark chocolate ganache'],
+    signatureDishes: ['river trout with dill oil', 'veal cheek with plum glaze', 'dark chocolate and cherry cream'],
     whyThisWorks:
-      'The room asks you to lean in. Rich textures, a measured pace, and an atmosphere that amplifies touch, attention, and conversation.',
-    ritualSuggestion: 'Start with a shared plate and let the order follow the energy, not the rules.',
+      'The river gives the room motion while the room itself stays composed. That contrast makes the night feel intimate without feeling heavy, and the pacing naturally encourages attention.',
+    ritualSuggestion: 'Share the first plate and let the rest of the meal unfold slowly.',
     palette: ['#604843', '#9a6f61', '#efd9c7']
   },
   {
-    slug: 'olive-drift',
-    title: 'Olive Drift',
-    district: 'Cobble Hill',
-    city: 'Brooklyn',
+    slug: 'balkan-hearth',
+    title: 'Balkan Hearth',
+    district: 'Vračar',
+    city: 'Belgrade',
+    venueType: 'modern Balkan comfort room',
     price: '$$',
-    moodIds: ['escape', 'soft-indulgence', 'comfort'],
-    contextIds: ['solo', 'stay-home', 'quick-reset', 'slow-evening'],
-    vibeTags: ['green', 'breezy', 'quiet'],
-    fitLabel: 'A reset with a cleaner horizon.',
-    description: 'Fresh, restrained, and quietly transporting without becoming precious.',
-    bestFor: ['a midweek reset', 'a solo lunch', 'an unhurried night in'],
-    idealMoment: 'Go when you want the day to feel more spacious.',
-    atmosphere: ['olive tones', 'airiness', 'soft acoustics'],
-    signatureDishes: ['market greens', 'citrus fish', 'yogurt tart'],
+    moodIds: ['comfort', 'reward', 'soft-indulgence'],
+    contextIds: ['solo', 'slow-evening', 'stay-home', 'quick-reset'],
+    vibeTags: ['grounded', 'generous', 'modern'],
+    fitLabel: 'Modern Balkan comfort, polished edge.',
+    feelingServes: 'Grounded reward',
+    description: 'A modern Balkan room where the comfort is familiar, but the details are sharp and polished.',
+    bestContext: 'Slow evening after a demanding day',
+    suggestedDish: 'Paprika roast chicken with smoked potato cream',
+    whyTonight: 'It feels like being taken care of without losing the premium edge.',
+    bestFor: ['a midweek reset', 'a solo dinner', 'an unhurried night in'],
+    idealMoment: 'Use it when the day needs to end with something reliable and warm.',
+    atmosphere: ['warm wood', 'clean lines', 'low conversation'],
+    signatureDishes: ['paprika roast chicken', 'smoked potato cream', 'tahini and walnut cake'],
     whyThisWorks:
-      'It clears the palate and the mind at the same time. The palette feels clean, but the food still lands with comfort and care.',
-    ritualSuggestion: 'Choose the lightest thing on the menu and add one beautiful, unneeded extra.',
+      'It lands between memory and refinement. The flavors feel familiar enough to soothe you, but the plating and pacing keep it feeling like a special night rather than a heavy one.',
+    ritualSuggestion: 'Start with a warm bite and end with something walnut-rich.',
     palette: ['#6e7a57', '#a9b58b', '#eef1e6']
   },
   {
-    slug: 'second-wind',
-    title: 'Second Wind',
-    district: 'Williamsburg',
-    city: 'New York',
-    price: '$$$',
-    moodIds: ['reward', 'play', 'connection'],
-    contextIds: ['friends', 'go-out', 'special-night'],
-    vibeTags: ['lively', 'shareable', 'spark'],
-    fitLabel: 'For group energy that still feels elevated.',
-    description: 'A lively room built for the feeling of being out exactly when you should be.',
-    bestFor: ['a Friday group dinner', 'a celebration', 'the one friend night that matters'],
-    idealMoment: 'Arrive hungry enough to share everything.',
-    atmosphere: ['buzz without chaos', 'rounded corners', 'modulated energy'],
-    signatureDishes: ['crispy potatoes', 'tuna crudo', 'salted caramel parfait'],
+    slug: 'hidden-fig',
+    title: 'Hidden Fig',
+    district: 'Kosančićev Venac',
+    city: 'Belgrade',
+    venueType: 'hidden dessert room',
+    price: '$$',
+    moodIds: ['reward', 'sensuality', 'soft-indulgence'],
+    contextIds: ['date', 'special-night', 'solo'],
+    vibeTags: ['secret', 'sweet', 'quiet'],
+    fitLabel: 'A dessert room for the final scene.',
+    feelingServes: 'Quiet delight',
+    description: 'A discreet dessert room tucked above the old streets, made for ending a night gently.',
+    bestContext: 'Special night or post-dinner pause',
+    suggestedDish: 'Fig tart with walnut cream and sour cherry syrup',
+    whyTonight: 'It gives the evening a final note without becoming sugary or loud.',
+    bestFor: ['a sweet ending', 'a private pause', 'a carefully marked night'],
+    idealMoment: 'Come here when you want the last course to feel like a reveal.',
+    atmosphere: ['soft lamps', 'old stone', 'close seating'],
+    signatureDishes: ['fig tart with walnut cream', 'sour cherry semifreddo', 'rose milk pudding'],
     whyThisWorks:
-      'The menu keeps the room moving, but the atmosphere stays composed. It gives group energy a premium frame.',
-    ritualSuggestion: 'Let one person order for the table, then keep one wildcard dish for the end.',
+      'Dessert becomes the punctuation mark, not the whole story. The room is intimate enough to feel secret, but calm enough that the sweetness never tips into noise.',
+    ritualSuggestion: 'Order one dessert to share, then one that belongs only to you.',
     palette: ['#65504a', '#a07b63', '#f2e4d7']
   },
   {
-    slug: 'afterglow-bento',
-    title: 'Afterglow Bento',
-    district: 'Dumbo',
-    city: 'Brooklyn',
+    slug: 'midnight-oven',
+    title: 'Midnight Oven',
+    district: 'Terazije',
+    city: 'Belgrade',
+    venueType: 'late-night bakery ritual',
     price: '$',
-    moodIds: ['reward', 'soft-indulgence'],
-    contextIds: ['solo', 'quick-reset', 'stay-home'],
-    vibeTags: ['compact', 'precise', 'satisfying'],
-    fitLabel: 'A small reward that still feels complete.',
-    description: 'Precise, beautiful, and designed to feel restorative rather than heavy.',
-    bestFor: ['a 20-minute reset', 'one perfect lunch', 'a small win after a long day'],
-    idealMoment: 'When you want a clean line between before and after.',
-    atmosphere: ['orderly', 'quietly modern', 'intentional'],
-    signatureDishes: ['miso eggplant', 'crispy rice', 'sesame soft serve'],
+    moodIds: ['play', 'comfort', 'escape'],
+    contextIds: ['quick-reset', 'stay-home', 'solo'],
+    vibeTags: ['warm', 'late', 'ritual'],
+    fitLabel: 'Late-night bakery, simple ritual.',
+    feelingServes: 'Small relief',
+    description: 'An after-hours bakery where the glow is warm, the line is short, and the ritual feels private.',
+    bestContext: 'Quick reset or solo stop',
+    suggestedDish: 'Hot burek with yogurt and a paper cup of strong coffee',
+    whyTonight: 'It resets the night quickly and gives you a tactile, immediate kind of comfort.',
+    bestFor: ['a midnight craving', 'a solitary ritual', 'a fast mood reset'],
+    idealMoment: 'Best when you need something warm before going home.',
+    atmosphere: ['sudden warmth', 'paper bags', 'small queues'],
+    signatureDishes: ['hot burek with yogurt', 'sesame kifle', 'plum-filled rolls'],
     whyThisWorks:
-      'Its power comes from proportion. Nothing is excessive, everything is just enough, and that restraint makes the pleasure feel sharper.',
-    ritualSuggestion: 'Take the first bite slowly, without your phone in hand.',
+      'The pleasure is immediate and unpretentious. Hot pastry, sharp coffee, and the feeling of taking a quiet detour at night can shift the mood faster than a full dinner.',
+    ritualSuggestion: 'Eat standing up for the first bite, then walk slowly home.',
     palette: ['#7d6a53', '#b79a73', '#f4ead7']
   },
   {
-    slug: 'night-market-curve',
-    title: 'Night Market Curve',
-    district: 'Chinatown',
-    city: 'New York',
-    price: '$$',
-    moodIds: ['adventure', 'play', 'escape'],
-    contextIds: ['friends', 'go-out', 'special-night'],
-    vibeTags: ['bright', 'spiky', 'lively'],
-    fitLabel: 'Built for curiosity and momentum.',
-    description: 'Sharp, lively, and full of texture - the kind of night that wakes you up.',
-    bestFor: ['trying something new', 'a spontaneous route', 'friends with appetite'],
-    idealMoment: 'Best when the evening still has room to move.',
-    atmosphere: ['lateral movement', 'multiple textures', 'unfolding course by course'],
-    signatureDishes: ['hand-pulled noodles', 'chili dumplings', 'black sesame custard'],
+    slug: 'velvet-bello',
+    title: 'Velvet Bello',
+    district: 'Senjak',
+    city: 'Belgrade',
+    venueType: 'intimate date dinner',
+    price: '$$$',
+    moodIds: ['sensuality', 'connection', 'reward'],
+    contextIds: ['date', 'special-night', 'go-out'],
+    vibeTags: ['intimate', 'glow', 'dinner'],
+    fitLabel: 'Private, elegant, close.',
+    feelingServes: 'Intentional intimacy',
+    description: 'An intimate dining room with low sound, polished service, and enough warmth to make conversation feel closer.',
+    bestContext: 'Date dinner or special night',
+    suggestedDish: 'Veal cheek with quince glaze and celeriac purée',
+    whyTonight: 'It gives the night enough ceremony to feel special without turning theatrical.',
+    bestFor: ['an intimate date', 'a private celebration', 'a dinner that should linger'],
+    idealMoment: 'Book it just before the light disappears.',
+    atmosphere: ['soft brass', 'low conversation', 'glossed wood'],
+    signatureDishes: ['veal cheek with quince glaze', 'duck with sour cherry jus', 'dark chocolate mousse with sea salt'],
     whyThisWorks:
-      'A sense of motion keeps the whole experience charged. Every dish feels like a small turn, which makes the evening feel adventurous without becoming chaotic.',
-    ritualSuggestion: 'Choose one familiar thing and one thing you would normally skip.',
-    palette: ['#5f6850', '#97a26d', '#eef0df']
+      'The room narrows the focus to the two of you. That closeness, combined with precise food and a slow pace, makes the whole experience feel emotionally legible from the start.',
+    ritualSuggestion: 'Share the first course and keep the dessert for the end of the conversation.',
+    palette: ['#604843', '#9a6f61', '#efd9c7']
   },
   {
-    slug: 'soft-archive',
-    title: 'Soft Archive',
-    district: 'Tribeca',
-    city: 'New York',
+    slug: 'first-light',
+    title: 'First Light',
+    district: 'Dorćol',
+    city: 'Belgrade',
+    venueType: 'solo reset café',
     price: '$$$',
-    moodIds: ['connection', 'escape', 'soft-indulgence'],
-    contextIds: ['date', 'slow-evening', 'special-night'],
-    vibeTags: ['quiet-luxury', 'editorial', 'layered'],
-    fitLabel: 'For nights that should feel stored in memory.',
-    description: 'An editorial room where conversation, texture, and pacing are all doing quiet work.',
-    bestFor: ['a meaningful date', 'a reflective evening', 'the kind of night you remember'],
-    idealMoment: 'Reserve for the hour when you are not rushing to anywhere else.',
-    atmosphere: ['library hush', 'waxed wood', 'slow service'],
-    signatureDishes: ['truffle toast', 'poached pear', 'aged cheese plate'],
+    moodIds: ['escape', 'comfort', 'soft-indulgence'],
+    contextIds: ['solo', 'quick-reset', 'stay-home'],
+    vibeTags: ['calm', 'bright', 'private'],
+    fitLabel: 'A reset with no friction.',
+    feelingServes: 'Quiet clarity',
+    description: 'A refined café for solo resets, slow pages, and a cup that changes the pace of the day.',
+    bestContext: 'Solo reset or soft morning-after',
+    suggestedDish: 'Poppy-seed roll with thick yogurt and apricot compote',
+    whyTonight: 'It gives you a small, clean pleasure without asking for a full event.',
+    bestFor: ['a solo reset', 'a quiet reading stop', 'a slow start or restart'],
+    idealMoment: 'Use it when you need the day to re-open gently.',
+    atmosphere: ['window light', 'quiet corners', 'slow coffee service'],
+    signatureDishes: ['poppy-seed roll', 'thick yogurt with apricot compote', 'Belgrade roast coffee'],
     whyThisWorks:
-      'The room behaves like a carefully edited note to yourself: calm, rich, and uncluttered. It gives the evening a feeling of permanence.',
-    ritualSuggestion: 'End with something sweet and one last quiet conversation.',
+      'The energy is understated, which makes it easier to hear yourself again. It feels like a deliberate pause rather than a transaction, and that is the point.',
+    ritualSuggestion: 'Order coffee first, then decide whether the pastry is the main event or a bonus.',
     palette: ['#61554c', '#9a8a79', '#f1e9e0']
   },
   {
-    slug: 'sun-wash-cafe',
-    title: 'Sun-Wash Cafe',
-    district: 'Greenpoint',
-    city: 'Brooklyn',
-    price: '$',
-    moodIds: ['play', 'escape', 'comfort'],
-    contextIds: ['solo', 'friends', 'quick-reset', 'stay-home'],
-    vibeTags: ['bright', 'airy', 'easy'],
-    fitLabel: 'For a small bright lift.',
-    description: 'A bright, airy place that feels easy from the first five minutes.',
-    bestFor: ['late brunch', 'a gentle catch-up', 'a soft reset'],
-    idealMoment: 'Best in the daylight when the room can do the work for you.',
-    atmosphere: ['sunlight', 'breathing room', 'relaxed tempo'],
-    signatureDishes: ['cardamom bun', 'tomato tartine', 'honey yogurt bowl'],
+    slug: 'sava-table',
+    title: 'Sava Table',
+    district: 'New Belgrade',
+    city: 'Belgrade',
+    venueType: 'riverside slow dinner',
+    price: '$$',
+    moodIds: ['escape', 'connection', 'soft-indulgence'],
+    contextIds: ['friends', 'go-out', 'slow-evening'],
+    vibeTags: ['river', 'slow', 'roomy'],
+    fitLabel: 'Riverside, spacious, slow.',
+    feelingServes: 'Wide calm',
+    description: 'A riverside dining room where the view stretches the pace and the meal unfolds without hurry.',
+    bestContext: 'Slow evening with room to breathe',
+    suggestedDish: 'Slow-braised lamb with polenta and mint oil',
+    whyTonight: 'It makes the evening feel spacious, giving conversation and appetite the same amount of room.',
+    bestFor: ['a long dinner', 'a group that wants calm', 'a night that should breathe'],
+    idealMoment: 'Go when you do not want to watch the clock.',
+    atmosphere: ['river reflections', 'soft linen', 'unhurried service'],
+    signatureDishes: ['slow-braised lamb with polenta', 'smoked trout salad', 'quince sorbet'],
     whyThisWorks:
-      'It keeps the stakes low and the pleasure high. That balance is what makes it such a reliable reset.',
-    ritualSuggestion: 'Stay for one more coffee than you planned.',
+      'The river changes the emotional tempo before the food even arrives. Everything about the room encourages a slower breath and a longer stay, which is exactly what makes it feel restorative.',
+    ritualSuggestion: 'Take the walk by the water before or after dinner so the night feels continuous.',
     palette: ['#9a7d5d', '#d2b594', '#f7efe4']
   }
 ];
+
+export const demoCity = 'Belgrade';
+export const demoCityLabel = 'Demo city: Belgrade';
+export const investorLine = 'Senyra is building the emotional discovery layer for food experiences.';
 
 export const collectionLabels = [
   {
@@ -376,73 +425,65 @@ export const getMood = (id: string | null | undefined) => moods.find((item) => i
 export const getContext = (id: string | null | undefined) =>
   contexts.find((item) => item.id === id) ?? contexts[0];
 
-const moodInsights: Record<MoodId, { state: string; lens: string }> = {
+const moodInsights: Record<MoodId, { headline: string; body: string }> = {
   comfort: {
-    state: 'You seem to be looking for a softer landing rather than a big event.',
-    lens: 'Senyra is leaning toward warmth, familiarity, and rooms that lower the volume of the day.'
+    headline: 'Tonight calls for softness.',
+    body: 'You need warmth, low noise, and food that feels grounding - not another loud dinner.'
   },
   reward: {
-    state: 'You are probably after something that feels earned and beautifully timed.',
-    lens: 'Senyra is favoring polished spaces, a little richness, and a dinner that feels like a proper yes.'
+    headline: 'You want the feeling of a proper yes.',
+    body: 'The right room should feel earned, polished, and just rich enough to mark the evening.'
   },
   sensuality: {
-    state: 'The mood feels slower, more tactile, and a little more deliberate.',
-    lens: 'Senyra is choosing rooms with texture, dimmer light, and enough intimacy to make the evening linger.'
+    headline: 'The night wants to slow down.',
+    body: 'Choose texture, dimmer light, and a room that makes the evening feel closer and more deliberate.'
   },
   adventure: {
-    state: 'You want novelty, but you still want it to feel good in the moment.',
-    lens: 'Senyra is reaching for places with contrast, movement, and just enough surprise to wake the night up.'
+    headline: 'You want surprise with a steady hand.',
+    body: 'The best match is a place that shifts the mood without tipping into chaos.'
   },
   connection: {
-    state: 'This looks like an evening built around presence and easy conversation.',
-    lens: 'Senyra is leaning into shared plates, balanced pacing, and rooms that help people open up naturally.'
+    headline: 'This is about presence.',
+    body: 'You need shared pacing, easy conversation, and a room that helps people open up naturally.'
   },
   escape: {
-    state: 'You may be wanting distance from the day more than anything dramatic.',
-    lens: 'Senyra is prioritizing atmosphere, softness, and a setting that lets the city feel further away.'
+    headline: 'You want distance from the day.',
+    body: 'The right choice should make the city feel further away without making the night feel empty.'
   },
   play: {
-    state: 'You want the night to feel lighter, looser, and a little more fun.',
-    lens: 'Senyra is choosing places with momentum, energy, and enough edge to keep things interesting.'
+    headline: 'Keep it light, keep it moving.',
+    body: 'You want a little momentum, a little surprise, and enough energy to keep the night playful.'
   },
   'soft-indulgence': {
-    state: 'You are in the mood for something gentle, rich, and unhurried.',
-    lens: 'Senyra is focusing on restrained luxury, quiet pleasure, and details that feel quietly complete.'
+    headline: 'A gentle luxury sounds right.',
+    body: 'Choose something rich but restrained, with details that feel quietly complete.'
   }
 };
 
-const contextInsights: Record<ContextId, { state: string; lens: string }> = {
+const contextInsights: Record<ContextId, { body: string }> = {
   solo: {
-    state: 'This feels personal, not performative.',
-    lens: 'Senyra is keeping the recommendations intimate and easy to enter on your own.'
+    body: 'This works best when it stays personal, not performative.'
   },
   date: {
-    state: 'The night should create chemistry without forcing it.',
-    lens: 'Senyra is looking for shared energy, visual warmth, and a setting that helps the conversation breathe.'
+    body: 'It should create chemistry without forcing it.'
   },
   friends: {
-    state: 'You want the room to carry group energy without feeling chaotic.',
-    lens: 'Senyra is leaning toward places that feel generous, social, and polished enough for everyone.'
+    body: 'The room should hold group energy without becoming chaotic.'
   },
   'stay-home': {
-    state: 'The goal is comfort with no friction at all.',
-    lens: 'Senyra is favoring options that feel soft, low-lift, and easy to settle into.'
+    body: 'The goal is comfort with no friction at all.'
   },
   'go-out': {
-    state: 'You want the evening to feel distinct from the rest of the week.',
-    lens: 'Senyra is reaching for places with stronger atmosphere and a little more ceremony.'
+    body: 'You want the evening to feel distinct from the rest of the week.'
   },
   'quick-reset': {
-    state: 'This needs to work fast and leave a clean impression.',
-    lens: 'Senyra is choosing concise, high-signal experiences that change the mood without taking over the schedule.'
+    body: 'This needs to work fast and leave a clean impression.'
   },
   'slow-evening': {
-    state: 'You have time to let the night unfold slowly.',
-    lens: 'Senyra is prioritizing pacing, softness, and experiences that reward unhurried attention.'
+    body: 'You have time to let the night unfold slowly.'
   },
   'special-night': {
-    state: 'This should feel marked, not ordinary.',
-    lens: 'Senyra is leaning toward elevated choices that make the evening feel memorable from the first glance.'
+    body: 'This should feel marked, not ordinary.'
   }
 };
 
@@ -452,8 +493,8 @@ export const getDiscoveryInsight = (moodId: MoodId, contextId: ContextId): Disco
 
   return {
     eyebrow: 'Personal insight',
-    title: 'Senyra reads the room.',
-    copy: `${mood.state} ${context.lens}`
+    title: 'Senyra reads what you need tonight.',
+    copy: `${mood.headline} ${context.body}`
   };
 };
 

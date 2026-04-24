@@ -2,8 +2,9 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ChevronLeft, Compass, Home, UserRound, Bookmark } from 'lucide-react';
+import { Bookmark, ChevronLeft, Compass, Home, UserRound } from 'lucide-react';
 import { cn } from '@/components/cn';
+import { demoCityLabel, investorLine } from '@/lib/senyra';
 import type { ReactNode } from 'react';
 
 const navItems = [
@@ -52,6 +53,14 @@ export function AppFrame({
                 </span>
                 <span className="hidden text-[9px] font-medium uppercase tracking-[0.34em] text-cream-700/65 sm:inline">
                   pleasure through food
+                </span>
+              </div>
+              <div className="flex flex-wrap gap-2 pt-1">
+                <span className="rounded-full border border-white/80 bg-white/72 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.22em] text-cream-700/78 shadow-soft backdrop-blur-xl">
+                  {demoCityLabel}
+                </span>
+                <span className="rounded-full border border-white/80 bg-white/72 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-cream-700/72 shadow-soft backdrop-blur-xl">
+                  {investorLine}
                 </span>
               </div>
             </div>
