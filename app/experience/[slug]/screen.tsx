@@ -80,7 +80,9 @@ export default function ExperienceDetailScreen({ experience }: { experience: Exp
       </section>
 
       <section className="panel-strong rounded-[1.8rem] p-5">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-700/70">Why this works</p>
+        <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-700/70">
+          Why this works for you
+        </p>
         <p className="mt-2 text-[15px] leading-7 text-cream-800/84">{experience.whyThisWorks}</p>
       </section>
 

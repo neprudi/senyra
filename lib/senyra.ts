@@ -38,6 +38,12 @@ export type Experience = {
   palette: [string, string, string];
 };
 
+export type DiscoveryInsight = {
+  eyebrow: string;
+  title: string;
+  copy: string;
+};
+
 export const moods: Array<{
   id: MoodId;
   label: string;
@@ -369,6 +375,87 @@ export const getMood = (id: string | null | undefined) => moods.find((item) => i
 
 export const getContext = (id: string | null | undefined) =>
   contexts.find((item) => item.id === id) ?? contexts[0];
+
+const moodInsights: Record<MoodId, { state: string; lens: string }> = {
+  comfort: {
+    state: 'You seem to be looking for a softer landing rather than a big event.',
+    lens: 'Senyra is leaning toward warmth, familiarity, and rooms that lower the volume of the day.'
+  },
+  reward: {
+    state: 'You are probably after something that feels earned and beautifully timed.',
+    lens: 'Senyra is favoring polished spaces, a little richness, and a dinner that feels like a proper yes.'
+  },
+  sensuality: {
+    state: 'The mood feels slower, more tactile, and a little more deliberate.',
+    lens: 'Senyra is choosing rooms with texture, dimmer light, and enough intimacy to make the evening linger.'
+  },
+  adventure: {
+    state: 'You want novelty, but you still want it to feel good in the moment.',
+    lens: 'Senyra is reaching for places with contrast, movement, and just enough surprise to wake the night up.'
+  },
+  connection: {
+    state: 'This looks like an evening built around presence and easy conversation.',
+    lens: 'Senyra is leaning into shared plates, balanced pacing, and rooms that help people open up naturally.'
+  },
+  escape: {
+    state: 'You may be wanting distance from the day more than anything dramatic.',
+    lens: 'Senyra is prioritizing atmosphere, softness, and a setting that lets the city feel further away.'
+  },
+  play: {
+    state: 'You want the night to feel lighter, looser, and a little more fun.',
+    lens: 'Senyra is choosing places with momentum, energy, and enough edge to keep things interesting.'
+  },
+  'soft-indulgence': {
+    state: 'You are in the mood for something gentle, rich, and unhurried.',
+    lens: 'Senyra is focusing on restrained luxury, quiet pleasure, and details that feel quietly complete.'
+  }
+};
+
+const contextInsights: Record<ContextId, { state: string; lens: string }> = {
+  solo: {
+    state: 'This feels personal, not performative.',
+    lens: 'Senyra is keeping the recommendations intimate and easy to enter on your own.'
+  },
+  date: {
+    state: 'The night should create chemistry without forcing it.',
+    lens: 'Senyra is looking for shared energy, visual warmth, and a setting that helps the conversation breathe.'
+  },
+  friends: {
+    state: 'You want the room to carry group energy without feeling chaotic.',
+    lens: 'Senyra is leaning toward places that feel generous, social, and polished enough for everyone.'
+  },
+  'stay-home': {
+    state: 'The goal is comfort with no friction at all.',
+    lens: 'Senyra is favoring options that feel soft, low-lift, and easy to settle into.'
+  },
+  'go-out': {
+    state: 'You want the evening to feel distinct from the rest of the week.',
+    lens: 'Senyra is reaching for places with stronger atmosphere and a little more ceremony.'
+  },
+  'quick-reset': {
+    state: 'This needs to work fast and leave a clean impression.',
+    lens: 'Senyra is choosing concise, high-signal experiences that change the mood without taking over the schedule.'
+  },
+  'slow-evening': {
+    state: 'You have time to let the night unfold slowly.',
+    lens: 'Senyra is prioritizing pacing, softness, and experiences that reward unhurried attention.'
+  },
+  'special-night': {
+    state: 'This should feel marked, not ordinary.',
+    lens: 'Senyra is leaning toward elevated choices that make the evening feel memorable from the first glance.'
+  }
+};
+
+export const getDiscoveryInsight = (moodId: MoodId, contextId: ContextId): DiscoveryInsight => {
+  const mood = moodInsights[moodId];
+  const context = contextInsights[contextId];
+
+  return {
+    eyebrow: 'Personal insight',
+    title: 'Senyra reads the room.',
+    copy: `${mood.state} ${context.lens}`
+  };
+};
 
 export const getProfileArchetype = (moodId: MoodId) => {
   if (['comfort', 'soft-indulgence', 'escape'].includes(moodId)) {

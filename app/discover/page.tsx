@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { AppFrame } from '@/components/app-frame';
 import { ExperienceCard } from '@/components/experience-card';
-import { getContext, getDiscoveryFeed, getMood } from '@/lib/senyra';
+import { getContext, getDiscoveryFeed, getDiscoveryInsight, getMood } from '@/lib/senyra';
 import { usePrototype } from '@/lib/prototype-store';
 
 export const dynamic = 'force-dynamic';
@@ -13,6 +13,7 @@ export default function DiscoverPage() {
   const { moodId, contextId, toggleSaved, isSaved } = usePrototype();
   const mood = getMood(moodId);
   const context = getContext(contextId);
+  const insight = getDiscoveryInsight(moodId, contextId);
   const feed = getDiscoveryFeed(moodId, contextId);
 
   return (
@@ -20,13 +21,13 @@ export default function DiscoverPage() {
       <div className="space-y-5">
         <div className="panel-strong rounded-[1.8rem] p-5 animate-rise">
           <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-700/70">
-            Senyra curated this for a softer evening.
+            {insight.eyebrow}
           </p>
-          <h2 className="mt-2 max-w-[14ch] text-[2rem] font-semibold leading-[0.98] tracking-[-0.045em] text-graphite">
-            You do not need a list. You need a feeling that fits.
+          <h2 className="mt-2 max-w-[15ch] text-[2rem] font-semibold leading-[0.98] tracking-[-0.045em] text-graphite">
+            {insight.title}
           </h2>
-          <p className="mt-3 max-w-[31ch] text-[15px] leading-7 text-cream-800/80">
-            {mood.summary} Chosen for {context.summary.toLowerCase()}.
+          <p className="mt-3 max-w-[32ch] text-[15px] leading-7 text-cream-800/80">
+            {insight.copy}
           </p>
         </div>
 

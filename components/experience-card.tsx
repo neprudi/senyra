@@ -55,7 +55,7 @@ export function ExperienceCard({ experience, onOpen, saved, onToggleSave, compac
 
           <div className="space-y-2 border-t border-cream-200/70 pt-3">
             <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-cream-700/65">
-              Why it fits your mood
+              Why this works for you
             </p>
             <p className="text-sm leading-6 text-cream-800/80">{experience.whyThisWorks}</p>
           </div>

@@ -19,11 +19,12 @@ export default function HomePage() {
           <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-700/70">
             Senyra understands your mood.
           </p>
-          <h2 className="mt-2 max-w-[15ch] text-[2rem] font-semibold tracking-[-0.045em] leading-[0.98] text-graphite">
-            Food matched to your mood.
+          <h2 className="mt-2 max-w-[14ch] text-[2.15rem] font-semibold tracking-[-0.048em] leading-[0.96] text-graphite">
+            Not what to eat.
+            <span className="block">How you want to feel.</span>
           </h2>
           <p className="mt-3 max-w-[31ch] text-[15px] leading-7 text-cream-800/80">
-            Not what to eat. How you want to feel. Senyra turns that feeling into a place, a dish, and a ritual.
+            Senyra matches food to your mood. The feeling comes first, then the room, the dish, and the ritual.
           </p>
         </div>
 
