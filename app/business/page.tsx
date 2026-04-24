@@ -28,7 +28,7 @@ export default function BusinessPage() {
             Senyra helps restaurants get discovered at the moment of emotional intent.
           </h2>
           <p className="mt-3 max-w-[32ch] text-[15px] leading-7 text-cream-800/80">
-            People choose how they want to feel. Senyra turns that into a mood plan, and restaurants meet the user
+            Senyra monetizes qualified mood leads. People choose how they want to feel, and restaurants meet the user
             after the desire is already clear.
           </p>
         </section>
@@ -73,6 +73,19 @@ export default function BusinessPage() {
           </p>
         </section>
 
+        <section className="panel-strong rounded-[1.8rem] p-5">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-700/70">Simple funnel</p>
+          <h3 className="mt-2 text-[1.55rem] font-semibold tracking-[-0.045em] leading-[0.98] text-graphite">
+            Mood selection to partner lead.
+          </h3>
+          <div className="mt-4 space-y-2">
+            <FlowStep>1. Mood selection</FlowStep>
+            <FlowStep>2. Mood plan view</FlowStep>
+            <FlowStep>3. Map open or booking click</FlowStep>
+            <FlowStep>4. Partner lead</FlowStep>
+          </div>
+        </section>
+
         <section className="grid gap-3 sm:grid-cols-2">
           <button
             type="button"
@@ -114,6 +127,15 @@ function PartnerModal({ onClose }: { onClose: () => void }) {
           Close
         </button>
       </div>
+    </div>
+  );
+}
+
+function FlowStep({ children }: { children: string }) {
+  return (
+    <div className="flex items-center gap-3 rounded-[1.2rem] border border-cream-200/70 bg-cream-50/70 px-4 py-3 text-sm leading-6 text-cream-800/82">
+      <span className="h-2 w-2 rounded-full bg-graphite" />
+      <span>{children}</span>
     </div>
   );
 }

@@ -1,10 +1,12 @@
 "use client";
 
+import { useState } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Bookmark } from 'lucide-react';
+import { ArrowRight, Bookmark, Share2 } from 'lucide-react';
 import { cn } from '@/components/cn';
 import { ArtPanel } from '@/components/art-panel';
 import { getMapsUrl, type Experience } from '@/lib/senyra';
+import { usePrototype } from '@/lib/prototype-store';
 
 type ExperienceCardProps = {
   experience: Experience;
@@ -16,6 +18,34 @@ type ExperienceCardProps = {
 
 export function ExperienceCard({ experience, onOpen, saved, onToggleSave, compact = false }: ExperienceCardProps) {
   const mapsUrl = getMapsUrl(experience.placeName);
+  const { toggleTonight, isTonight } = usePrototype();
+  const tonight = isTonight(experience.slug);
+  const [shareMessage, setShareMessage] = useState('');
+
+  const onShare = async () => {
+    const shareUrl = typeof window !== 'undefined' ? `${window.location.origin}/experience/${experience.slug}` : '';
+    try {
+      if (navigator.share && shareUrl) {
+        await navigator.share({
+          title: `Senyra: ${experience.title}`,
+          text: `${experience.placeName} - ${experience.whyThisWorks}`,
+          url: shareUrl
+        });
+        return;
+      }
+      if (shareUrl) {
+        await navigator.clipboard.writeText(shareUrl);
+        setShareMessage('Link copied.');
+        window.setTimeout(() => setShareMessage(''), 1500);
+      }
+    } catch {
+      if (shareUrl) {
+        await navigator.clipboard.writeText(shareUrl);
+        setShareMessage('Link copied.');
+        window.setTimeout(() => setShareMessage(''), 1500);
+      }
+    }
+  };
 
   return (
     <article className="soft-enter overflow-hidden rounded-[2rem] border border-white/80 bg-[rgba(255,253,249,0.82)] shadow-soft backdrop-blur-xl">
@@ -42,13 +72,19 @@ export function ExperienceCard({ experience, onOpen, saved, onToggleSave, compac
               <h3 className="text-[1.75rem] font-semibold tracking-[-0.045em] leading-[0.98] text-graphite">
                 {experience.title}
               </h3>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-cream-700/65">
-                Place
-              </p>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-cream-700/65">Place</p>
               <p className="max-w-[34ch] text-[15px] leading-7 text-cream-800/82">
-                {experience.placeName} · {experience.district}
+                {experience.placeName} - {experience.district}
               </p>
               <p className="max-w-[34ch] text-[15px] leading-7 text-cream-800/78">{experience.description}</p>
+              <button
+                type="button"
+                onClick={onOpen}
+                className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-700/72 transition hover:text-graphite"
+              >
+                Open detail
+                <ArrowRight className="h-3.5 w-3.5" />
+              </button>
             </div>
             <button
               type="button"
@@ -73,15 +109,11 @@ export function ExperienceCard({ experience, onOpen, saved, onToggleSave, compac
               <p className="text-sm leading-6 text-cream-800/82">{experience.feelingServes}</p>
             </div>
             <div className="space-y-1">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-cream-700/65">
-                Best context
-              </p>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-cream-700/65">Best context</p>
               <p className="text-sm leading-6 text-cream-800/82">{experience.bestContext}</p>
             </div>
             <div className="space-y-1">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-cream-700/65">
-                The place
-              </p>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-cream-700/65">The place</p>
               <p className="text-sm leading-6 text-cream-800/82">{experience.placeName}</p>
             </div>
             <div className="space-y-1">
@@ -117,23 +149,27 @@ export function ExperienceCard({ experience, onOpen, saved, onToggleSave, compac
           </div>
 
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <button
-              type="button"
-              onClick={onOpen}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-graphite px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-50 transition duration-300 ease-out hover:-translate-y-0.5 hover:shadow-glow"
-            >
-              Open detail
-              <ArrowRight className="h-4 w-4" />
-            </button>
             <div className="flex flex-wrap items-center gap-2">
               <Link
                 href={mapsUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/80 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-graphite shadow-soft transition duration-300 ease-out hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2 rounded-full bg-graphite px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-50 transition duration-300 ease-out hover:-translate-y-0.5 hover:shadow-glow"
               >
                 Open in Maps
               </Link>
+              <button
+                type="button"
+                onClick={() => toggleTonight(experience.slug)}
+                className={cn(
+                  'inline-flex items-center gap-2 rounded-full border px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.24em] shadow-soft transition duration-300 ease-out hover:-translate-y-0.5',
+                  tonight
+                    ? 'border-graphite/15 bg-graphite text-cream-50 shadow-glow'
+                    : 'border-white/80 bg-white/80 text-graphite'
+                )}
+              >
+                Add to tonight plan
+              </button>
               <button
                 type="button"
                 onClick={onToggleSave}
@@ -142,8 +178,21 @@ export function ExperienceCard({ experience, onOpen, saved, onToggleSave, compac
                 <Bookmark className={cn('h-3.5 w-3.5', saved && 'fill-current')} />
                 {saved ? 'Saved' : 'Save plan'}
               </button>
+              <button
+                type="button"
+                onClick={onShare}
+                className="inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/80 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-graphite shadow-soft transition duration-300 ease-out hover:-translate-y-0.5"
+              >
+                <Share2 className="h-3.5 w-3.5" />
+                Share
+              </button>
             </div>
           </div>
+          {shareMessage ? (
+            <p className="pt-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-cream-700/65">
+              {shareMessage}
+            </p>
+          ) : null}
         </div>
       </div>
     </article>

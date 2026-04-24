@@ -1,110 +1,61 @@
 "use client";
 
-import { useMemo, useState } from 'react';
 import Link from 'next/link';
-import { ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { AppFrame } from '@/components/app-frame';
-import { ArtPanel } from '@/components/art-panel';
-import { demoCityLabel, onboardingSlides } from '@/lib/senyra';
+import { demoCityLabel } from '@/lib/senyra';
 
 export const dynamic = 'force-dynamic';
 
 export default function OnboardingPage() {
-  const [index, setIndex] = useState(0);
-  const slide = onboardingSlides[index];
-  const palette = useMemo<[string, string, string]>(() => {
-    const palettes: [string, string, string][] = [
-      ['#775a45', '#bf9b75', '#f4e6d8'],
-      ['#677357', '#a7b58e', '#eef0e5'],
-      ['#5f4b46', '#aa8475', '#f1dfd4'],
-      ['#7c674f', '#c4ad8e', '#f8efe4']
-    ];
-    return palettes[index];
-  }, [index]);
-
   return (
-    <AppFrame showNav={false} title={slide.title} eyebrow={slide.kicker} subtle>
-      <div className="flex min-h-[calc(100vh-10rem)] flex-col justify-between gap-7">
-        <div className="space-y-7 animate-rise">
-          <div className="panel-strong rounded-[1.8rem] p-5">
+    <AppFrame showNav={false} subtle>
+      <div className="flex min-h-[calc(100vh-10rem)] flex-col justify-between gap-6">
+        <section className="panel-strong relative overflow-hidden rounded-[2rem] p-6 animate-rise">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.7),transparent_28%),radial-gradient(circle_at_20%_80%,rgba(167,181,142,0.3),transparent_26%),linear-gradient(145deg,rgba(122,98,75,0.15),rgba(255,255,255,0.04))]" />
+          <div className="absolute -right-10 top-4 h-32 w-32 rounded-full bg-[#a6b592]/20 blur-3xl" />
+          <div className="absolute -left-8 bottom-0 h-28 w-28 rounded-full bg-[#cfb08a]/24 blur-3xl" />
+          <div className="relative space-y-4">
             <div className="flex flex-wrap gap-2">
               <span className="rounded-full border border-cream-200 bg-cream-50 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.22em] text-cream-700">
                 {demoCityLabel}
               </span>
-              <span className="rounded-full border border-cream-200 bg-cream-50 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-cream-700">
-                Emotional discovery, not search
+              <span className="rounded-full border border-cream-200 bg-cream-50 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.22em] text-cream-700">
+                Emotional discovery
               </span>
             </div>
-            <h2 className="mt-3 max-w-[15ch] text-[2.15rem] font-semibold leading-[0.94] tracking-[-0.05em] text-graphite">
-              {slide.title}
-            </h2>
-            <p className="mt-3 max-w-[32ch] text-[15px] leading-7 text-cream-800/82">{slide.copy}</p>
-          </div>
-          <ArtPanel
-            palette={palette}
-            label="Choose how you want to feel."
-            className="h-[48vh] min-h-[360px] shadow-[0_26px_80px_rgba(74,48,31,0.18)]"
-          />
-          <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              {onboardingSlides.map((_, slideIndex) => (
-                <span
-                  key={slideIndex}
-                  className={`h-1.5 rounded-full transition-all ${
-                    slideIndex === index ? 'w-8 bg-graphite' : 'w-1.5 bg-cream-300'
-                  }`}
-                />
-              ))}
+            <div className="space-y-2">
+              <p className="font-serif text-[0.95rem] font-semibold tracking-[0.46em] text-graphite">SENYRA</p>
+              <h1 className="max-w-[12ch] text-[2.45rem] font-semibold leading-[0.92] tracking-[-0.055em] text-graphite">
+                Not what to eat.
+                <span className="block">How you want to feel.</span>
+              </h1>
+              <p className="max-w-[28ch] text-[16px] leading-7 text-cream-800/84">
+                Food experiences matched to your mood.
+              </p>
+            </div>
+            <div className="rounded-[1.45rem] border border-white/75 bg-white/72 p-4 shadow-soft backdrop-blur-xl">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-700/70">
+                Senyra converts emotional intent into restaurant demand.
+              </p>
             </div>
           </div>
-        </div>
+        </section>
 
         <div className="space-y-3">
-          <div className="panel-strong rounded-[1.7rem] p-4">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-cream-700/70">
-              Senyra understands your mood.
-            </p>
-            <p className="mt-2 text-sm leading-6 text-cream-800/85">
-              {index === 0
-                ? 'Not what to eat. How you want to feel.'
-                : index === 1
-                  ? 'Food, places, and rituals matched to your mood.'
-                  : index === 2
-                    ? 'Start with a feeling. End with an experience.'
-                    : 'Senyra is building the emotional discovery layer for food experiences.'}
-            </p>
-          </div>
-
-          <div className="flex items-center justify-between gap-3">
-            <button
-              type="button"
-              onClick={() => setIndex((current) => Math.max(0, current - 1))}
-              disabled={index === 0}
-              className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/80 bg-white/75 text-graphite shadow-soft transition duration-300 ease-out disabled:opacity-40"
-              aria-label="Previous slide"
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setIndex((current) => Math.min(onboardingSlides.length - 1, current + 1))}
-              className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-graphite px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-50 transition duration-300 ease-out hover:-translate-y-0.5 hover:shadow-glow"
-            >
-              {index === onboardingSlides.length - 1 ? 'Continue to Senyra' : 'Next'}
-              <ChevronRight className="h-4 w-4" />
-            </button>
-          </div>
-
-          <div className="flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.22em] text-cream-700/70">
-            <span className="inline-flex items-center gap-2">
-              <Sparkles className="h-3.5 w-3.5" />
-              Premium prototype
-            </span>
-            <Link href="/home" className="transition hover:text-graphite">
-              Skip intro
-            </Link>
-          </div>
+          <Link
+            href="/home"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-graphite px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-50 shadow-glow transition hover:-translate-y-0.5"
+          >
+            Create my mood plan
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+          <Link
+            href="/home"
+            className="inline-flex w-full items-center justify-center rounded-full border border-white/80 bg-white/80 px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-graphite shadow-soft transition hover:-translate-y-0.5"
+          >
+            Skip
+          </Link>
         </div>
       </div>
     </AppFrame>

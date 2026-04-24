@@ -52,6 +52,9 @@ export default function HomePage() {
                 </p>
               </div>
             </div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-700/70">
+              Senyra converts emotional intent into restaurant demand.
+            </p>
             <div className="flex flex-wrap gap-2 pt-1">
               <span className="rounded-full border border-cream-200 bg-cream-50 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-cream-700">
                 Start with a feeling

@@ -43,6 +43,7 @@ export type Experience = {
   ritualSuggestion: string;
   palette: [string, string, string];
   websiteUrl?: string;
+  bookingUrl?: string;
 };
 
 export type DiscoveryInsight = {

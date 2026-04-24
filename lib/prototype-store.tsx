@@ -7,16 +7,20 @@ type PrototypeState = {
   moodId: MoodId;
   contextId: ContextId;
   savedSlugs: string[];
+  tonightSlugs: string[];
 };
 
 type PrototypeContextValue = {
   moodId: MoodId;
   contextId: ContextId;
   savedSlugs: string[];
+  tonightSlugs: string[];
   setMoodId: (id: MoodId) => void;
   setContextId: (id: ContextId) => void;
   toggleSaved: (slug: string) => void;
   isSaved: (slug: string) => boolean;
+  toggleTonight: (slug: string) => void;
+  isTonight: (slug: string) => boolean;
 };
 
 const STORAGE_KEY = 'senyra:prototype-state';
@@ -24,7 +28,8 @@ const STORAGE_KEY = 'senyra:prototype-state';
 const defaultState: PrototypeState = {
   moodId: 'comfort',
   contextId: 'slow-evening',
-  savedSlugs: ['soft-comfort-evening', 'sava-riverside-dinner']
+  savedSlugs: ['soft-comfort-evening', 'sava-riverside-dinner'],
+  tonightSlugs: ['soft-comfort-evening']
 };
 
 const PrototypeContext = createContext<PrototypeContextValue | null>(null);
@@ -37,13 +42,15 @@ export function PrototypeProvider({ children }: { children: ReactNode }) {
       const raw = window.localStorage.getItem(STORAGE_KEY);
       if (!raw) return;
       const parsed = JSON.parse(raw) as Partial<PrototypeState>;
-      const validSavedSlugs = Array.isArray(parsed.savedSlugs)
-        ? parsed.savedSlugs.filter((slug): slug is string => Boolean(getExperience(slug)))
-        : current.savedSlugs;
       setState((current) => ({
         moodId: (parsed.moodId as MoodId) ?? current.moodId,
         contextId: (parsed.contextId as ContextId) ?? current.contextId,
-        savedSlugs: validSavedSlugs
+        savedSlugs: Array.isArray(parsed.savedSlugs)
+          ? parsed.savedSlugs.filter((slug): slug is string => Boolean(getExperience(slug)))
+          : current.savedSlugs,
+        tonightSlugs: Array.isArray(parsed.tonightSlugs)
+          ? parsed.tonightSlugs.filter((slug): slug is string => Boolean(getExperience(slug)))
+          : current.tonightSlugs
       }));
     } catch {
       // Ignore storage issues and keep the default state.
@@ -59,6 +66,7 @@ export function PrototypeProvider({ children }: { children: ReactNode }) {
       moodId: state.moodId,
       contextId: state.contextId,
       savedSlugs: state.savedSlugs,
+      tonightSlugs: state.tonightSlugs,
       setMoodId: (id) => setState((current) => ({ ...current, moodId: id })),
       setContextId: (id) => setState((current) => ({ ...current, contextId: id })),
       toggleSaved: (slug) =>
@@ -68,7 +76,15 @@ export function PrototypeProvider({ children }: { children: ReactNode }) {
             ? current.savedSlugs.filter((item) => item !== slug)
             : [slug, ...current.savedSlugs]
         })),
-      isSaved: (slug) => state.savedSlugs.includes(slug)
+      isSaved: (slug) => state.savedSlugs.includes(slug),
+      toggleTonight: (slug) =>
+        setState((current) => ({
+          ...current,
+          tonightSlugs: current.tonightSlugs.includes(slug)
+            ? current.tonightSlugs.filter((item) => item !== slug)
+            : [slug, ...current.tonightSlugs]
+        })),
+      isTonight: (slug) => state.tonightSlugs.includes(slug)
     }),
     [state]
   );
