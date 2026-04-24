@@ -54,7 +54,7 @@ export function AppFrame({
                   SENYRA
                 </span>
                 <span className="hidden text-[9px] font-medium uppercase tracking-[0.34em] text-cream-700/65 sm:inline">
-                  pleasure through food
+                  mood-based demand engine
                 </span>
               </div>
               <div className="flex flex-wrap gap-2 pt-1">

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     template: '%s - SENYRA'
   },
   description:
-    'SENYRA helps people choose how they want to feel and matches that feeling with food, places, and rituals. Demo city: Belgrade.'
+    'SENYRA is a mood-based demand engine for food and hospitality. Users choose how they want to feel, and Senyra turns it into a real Belgrade food experience.'
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {

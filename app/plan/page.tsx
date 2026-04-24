@@ -110,7 +110,7 @@ export default function PlanPage() {
             href="/discover"
             className="inline-flex items-center justify-center gap-2 rounded-full bg-graphite px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-50 shadow-glow transition hover:-translate-y-0.5"
           >
-            See detailed matches
+            Open detailed mood plans
             <ArrowRight className="h-4 w-4" />
           </Link>
           <Link

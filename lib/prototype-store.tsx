@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
-import { type ContextId, type MoodId } from '@/lib/senyra';
+import { getExperience, type ContextId, type MoodId } from '@/lib/senyra';
 
 type PrototypeState = {
   moodId: MoodId;
@@ -24,7 +24,7 @@ const STORAGE_KEY = 'senyra:prototype-state';
 const defaultState: PrototypeState = {
   moodId: 'comfort',
   contextId: 'slow-evening',
-  savedSlugs: ['cellar-mina', 'sava-current']
+  savedSlugs: ['soft-comfort-evening', 'sava-riverside-dinner']
 };
 
 const PrototypeContext = createContext<PrototypeContextValue | null>(null);
@@ -37,10 +37,13 @@ export function PrototypeProvider({ children }: { children: ReactNode }) {
       const raw = window.localStorage.getItem(STORAGE_KEY);
       if (!raw) return;
       const parsed = JSON.parse(raw) as Partial<PrototypeState>;
+      const validSavedSlugs = Array.isArray(parsed.savedSlugs)
+        ? parsed.savedSlugs.filter((slug): slug is string => Boolean(getExperience(slug)))
+        : current.savedSlugs;
       setState((current) => ({
         moodId: (parsed.moodId as MoodId) ?? current.moodId,
         contextId: (parsed.contextId as ContextId) ?? current.contextId,
-        savedSlugs: Array.isArray(parsed.savedSlugs) ? parsed.savedSlugs : current.savedSlugs
+        savedSlugs: validSavedSlugs
       }));
     } catch {
       // Ignore storage issues and keep the default state.

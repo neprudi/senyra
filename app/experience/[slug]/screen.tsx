@@ -1,18 +1,24 @@
 "use client";
 
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { ArrowUpRight, Bookmark, MapPinned, Share2, UtensilsCrossed } from 'lucide-react';
+import { ArrowUpRight, Bookmark, Globe, MapPinned, Share2 } from 'lucide-react';
 import { ArtPanel } from '@/components/art-panel';
 import { cn } from '@/components/cn';
-import type { Experience } from '@/lib/senyra';
+import { getMapsUrl, type Experience } from '@/lib/senyra';
 import { usePrototype } from '@/lib/prototype-store';
 
 export default function ExperienceDetailScreen({ experience }: { experience: Experience }) {
   const { isSaved, toggleSaved } = usePrototype();
   const saved = isSaved(experience.slug);
-  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-    `${experience.title} Belgrade`
-  )}`;
+  const mapsUrl = getMapsUrl(experience.placeName);
+  const [shareMessage, setShareMessage] = useState('');
+
+  useEffect(() => {
+    if (!shareMessage) return;
+    const timer = window.setTimeout(() => setShareMessage(''), 1800);
+    return () => window.clearTimeout(timer);
+  }, [shareMessage]);
 
   const onShare = async () => {
     const shareUrl =
@@ -21,14 +27,21 @@ export default function ExperienceDetailScreen({ experience }: { experience: Exp
         : `/experience/${experience.slug}`;
     const payload = {
       title: `Senyra: ${experience.title}`,
-      text: experience.description,
+      text: `${experience.title} at ${experience.placeName}. ${experience.whyThisWorks}`,
       url: shareUrl
     };
-    if (navigator.share) {
-      await navigator.share(payload);
-      return;
+
+    try {
+      if (navigator.share) {
+        await navigator.share(payload);
+        return;
+      }
+      await navigator.clipboard.writeText(shareUrl);
+      setShareMessage('Link copied.');
+    } catch {
+      await navigator.clipboard.writeText(shareUrl);
+      setShareMessage('Link copied.');
     }
-    await navigator.clipboard.writeText(shareUrl);
   };
 
   return (
@@ -47,11 +60,14 @@ export default function ExperienceDetailScreen({ experience }: { experience: Exp
               </span>
             </div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-700/70">
-              {experience.city} - {experience.district}
+              Experience Detail
             </p>
-            <h2 className="max-w-[11ch] text-[2.15rem] font-semibold leading-[0.94] tracking-[-0.045em] text-graphite">
+            <h2 className="max-w-[12ch] text-[2.15rem] font-semibold leading-[0.94] tracking-[-0.045em] text-graphite">
               {experience.title}
             </h2>
+            <p className="max-w-[34ch] text-[15px] leading-7 text-cream-800/82">
+              {experience.placeName} · {experience.district}, {experience.city}
+            </p>
             <p className="max-w-[32ch] text-[15px] leading-7 text-cream-800/82">{experience.description}</p>
           </div>
           <button
@@ -82,10 +98,10 @@ export default function ExperienceDetailScreen({ experience }: { experience: Exp
       </section>
 
       <section className="grid gap-3 sm:grid-cols-2">
-        <InfoBlock title="Feeling it serves" items={[experience.feelingServes]} />
-        <InfoBlock title="Best context" items={[experience.bestContext]} />
-        <InfoBlock title="Suggested dish" items={[experience.suggestedDish]} />
-        <InfoBlock title="Suggested ritual" items={[experience.ritualSuggestion]} />
+        <InfoBlock title="The feeling" items={[experience.feelingServes]} />
+        <InfoBlock title="The place" items={[`${experience.placeName} · ${experience.district}`]} />
+        <InfoBlock title="The dish" items={[experience.suggestedDish]} />
+        <InfoBlock title="The ritual" items={[experience.ritualSuggestion]} />
       </section>
 
       <section className="panel-strong rounded-[1.8rem] p-5">
@@ -94,7 +110,7 @@ export default function ExperienceDetailScreen({ experience }: { experience: Exp
         </p>
         <p className="mt-2 text-[15px] leading-7 text-cream-800/84">{experience.whyThisWorks}</p>
         <div className="mt-4 rounded-[1.35rem] border border-cream-200/70 bg-cream-50/70 p-4">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-cream-700/65">Tonight's read</p>
+          <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-cream-700/65">Best moment</p>
           <p className="mt-2 text-sm leading-6 text-cream-800/82">{experience.whyTonight}</p>
         </div>
       </section>
@@ -111,6 +127,17 @@ export default function ExperienceDetailScreen({ experience }: { experience: Exp
             </span>
           ))}
         </div>
+      </section>
+
+      <section className="panel-strong rounded-[1.8rem] p-5">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-700/70">Partner value</p>
+        <h3 className="mt-2 text-[1.55rem] font-semibold tracking-[-0.045em] leading-[0.98] text-graphite">
+          High-intent mood lead
+        </h3>
+        <p className="mt-3 text-sm leading-7 text-cream-800/82">
+          Senyra surfaces this venue only after the user has chosen a feeling and a context. That means the lead is
+          already emotionally qualified before the map tap happens.
+        </p>
       </section>
 
       <div className="grid gap-3 sm:grid-cols-2">
@@ -133,15 +160,44 @@ export default function ExperienceDetailScreen({ experience }: { experience: Exp
         </Link>
       </div>
 
+      <section className="grid gap-3 sm:grid-cols-2">
+        {experience.websiteUrl ? (
+          <Link
+            href={experience.websiteUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-white/80 bg-white/80 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-graphite shadow-soft transition hover:-translate-y-0.5"
+          >
+            <Globe className="h-4 w-4" />
+            Visit website
+          </Link>
+        ) : (
+          <div className="rounded-full border border-dashed border-cream-300 bg-cream-50/70 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-cream-700/68">
+            Website not surfaced in this demo
+          </div>
+        )}
+        <button
+          type="button"
+          onClick={() => toggleSaved(experience.slug)}
+          className="inline-flex items-center justify-center gap-2 rounded-full bg-graphite px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-50 shadow-glow transition hover:-translate-y-0.5"
+        >
+          <Bookmark className={cn('h-4 w-4', saved && 'fill-current')} />
+          Save plan
+        </button>
+      </section>
+
       <section className="panel rounded-[1.8rem] p-5">
         <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-700/70">Tonight's note</p>
-        <div className="mt-2 flex items-start gap-3">
-          <UtensilsCrossed className="mt-1 h-4 w-4 text-cream-700/70" />
-          <p className="text-sm leading-6 text-cream-800/82">
-            Senyra understands your mood. Choose the room that lets the evening breathe.
-          </p>
-        </div>
+        <p className="mt-2 text-sm leading-6 text-cream-800/82">
+          Senyra understands your mood. Choose the room that lets the evening breathe.
+        </p>
       </section>
+
+      {shareMessage ? (
+        <div className="fixed bottom-24 left-1/2 z-[60] -translate-x-1/2 rounded-full border border-white/80 bg-[rgba(255,252,247,0.94)] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-graphite shadow-glow backdrop-blur-xl">
+          {shareMessage}
+        </div>
+      ) : null}
     </div>
   );
 }

@@ -39,7 +39,7 @@ export default function CollectionsPage() {
   ];
 
   return (
-    <AppFrame title="Saved" eyebrow={`${savedExperiences.length} experiences`} backHref="/discover">
+    <AppFrame title="Saved mood plans" eyebrow={`${savedExperiences.length} plans`} backHref="/discover">
       <div className="space-y-5">
         <div className="panel-strong rounded-[1.8rem] p-5 animate-rise">
           <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-700/70">Collections</p>
@@ -47,7 +47,7 @@ export default function CollectionsPage() {
             Moments worth keeping close.
           </h2>
           <p className="mt-3 max-w-[31ch] text-[15px] leading-7 text-cream-800/80">
-            Current pleasure lens: {mood.label.toLowerCase()}. Senyra turns saved places into a personal Belgrade library of moods.
+            Current pleasure lens: {mood.label.toLowerCase()}. Senyra turns saved plans into a personal Belgrade library of moods.
           </p>
         </div>
 
@@ -77,12 +77,14 @@ export default function CollectionsPage() {
                         <ArtPanel palette={experience.palette} className="h-20 w-20 shrink-0" />
                         <div className="min-w-0">
                           <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-cream-700/70">
-                            {experience.district}
+                            {experience.placeName}
                           </p>
                           <h3 className="truncate text-lg font-semibold tracking-[-0.03em] text-graphite">
                             {experience.title}
                           </h3>
-                          <p className="truncate text-sm leading-6 text-cream-800/76">{experience.description}</p>
+                          <p className="truncate text-sm leading-6 text-cream-800/76">
+                            {experience.district} · {experience.description}
+                          </p>
                         </div>
                       </Link>
                     ))}

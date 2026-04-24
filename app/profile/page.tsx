@@ -77,6 +77,14 @@ export default function ProfilePage() {
         </section>
 
         <section className="panel-strong rounded-[1.8rem] p-5">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-700/70">What is Senyra?</p>
+          <p className="mt-2 text-sm leading-7 text-cream-800/80">
+            Senyra is building the emotional discovery layer for food experiences. It helps people choose a feeling,
+            then turns that into a place, a dish, an atmosphere, and a ritual.
+          </p>
+        </section>
+
+        <section className="panel-strong rounded-[1.8rem] p-5">
           <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-700/70">Senyra Plus</p>
           <h3 className="mt-2 text-[1.6rem] font-semibold tracking-[-0.045em] leading-[0.98] text-graphite">
             Your private layer of pleasure.
@@ -99,7 +107,7 @@ export default function ProfilePage() {
               href="/business"
               className="inline-flex items-center justify-center rounded-full bg-graphite px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-50 shadow-glow transition hover:-translate-y-0.5"
             >
-              For partners
+              For restaurants
             </Link>
           </div>
         </section>

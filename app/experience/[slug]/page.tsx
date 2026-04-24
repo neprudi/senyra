@@ -14,7 +14,7 @@ export default async function ExperiencePage({ params }: { params: Promise<{ slu
   const safeExperience = experience;
 
   return (
-    <AppFrame title={safeExperience.title} eyebrow={safeExperience.district} backHref="/discover" subtle>
+    <AppFrame title="Experience Detail" eyebrow={safeExperience.title} backHref="/discover" subtle>
       <ExperienceDetailScreen experience={safeExperience} />
     </AppFrame>
   );
