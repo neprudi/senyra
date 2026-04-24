@@ -6,6 +6,8 @@ import { SelectableCard } from '@/components/selectable-card';
 import { moods } from '@/lib/senyra';
 import { usePrototype } from '@/lib/prototype-store';
 
+export const dynamic = 'force-dynamic';
+
 export default function HomePage() {
   const router = useRouter();
   const { moodId, setMoodId } = usePrototype();

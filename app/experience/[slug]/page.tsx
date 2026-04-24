@@ -3,6 +3,8 @@ import { AppFrame } from '@/components/app-frame';
 import { getExperience } from '@/lib/senyra';
 import ExperienceDetailScreen from './screen';
 
+export const dynamic = 'force-dynamic';
+
 export default async function ExperiencePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const experience = getExperience(slug);

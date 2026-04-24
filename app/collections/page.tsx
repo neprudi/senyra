@@ -6,6 +6,8 @@ import { ArtPanel } from '@/components/art-panel';
 import { collectionLabels, experiences, getMood, type ContextId, type MoodId } from '@/lib/senyra';
 import { usePrototype } from '@/lib/prototype-store';
 
+export const dynamic = 'force-dynamic';
+
 export default function CollectionsPage() {
   const { moodId, savedSlugs } = usePrototype();
   const savedExperiences = experiences.filter((item) => savedSlugs.includes(item.slug));

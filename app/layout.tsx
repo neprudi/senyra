@@ -3,6 +3,8 @@ import type { ReactNode } from 'react';
 import { PrototypeProvider } from '@/lib/prototype-store';
 import './globals.css';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: {
     default: 'Senyra',

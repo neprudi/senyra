@@ -5,6 +5,8 @@ import { ArtPanel } from '@/components/art-panel';
 import { getMood, getProfileArchetype } from '@/lib/senyra';
 import { usePrototype } from '@/lib/prototype-store';
 
+export const dynamic = 'force-dynamic';
+
 export default function ProfilePage() {
   const { moodId, contextId, savedSlugs } = usePrototype();
   const mood = getMood(moodId);

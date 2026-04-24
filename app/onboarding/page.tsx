@@ -7,6 +7,8 @@ import { AppFrame } from '@/components/app-frame';
 import { ArtPanel } from '@/components/art-panel';
 import { onboardingSlides } from '@/lib/senyra';
 
+export const dynamic = 'force-dynamic';
+
 export default function OnboardingPage() {
   const [index, setIndex] = useState(0);
   const slide = onboardingSlides[index];

@@ -6,6 +6,8 @@ import { ExperienceCard } from '@/components/experience-card';
 import { getContext, getDiscoveryFeed, getMood } from '@/lib/senyra';
 import { usePrototype } from '@/lib/prototype-store';
 
+export const dynamic = 'force-dynamic';
+
 export default function DiscoverPage() {
   const router = useRouter();
   const { moodId, contextId, toggleSaved, isSaved } = usePrototype();
