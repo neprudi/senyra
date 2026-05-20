@@ -192,24 +192,19 @@ export const planSteps: PlanStep[] = [
 
 export const monetizationPaths: MonetizationPath[] = [
   {
-    title: 'Featured Mood Placement',
-    copy: 'Restaurants appear inside high-intent emotional moments, when the user is ready to choose.',
-    value: 'High-intent discovery'
+    title: 'Pay-per-qualified action',
+    copy: 'Restaurants pay for map opens, booking clicks, and message clicks that happen after a mood has been selected.',
+    value: 'Lead monetization'
   },
   {
-    title: 'Curated Experience Campaigns',
-    copy: 'Brands and venues sponsor seasonal mood-based collections built around specific emotional states.',
-    value: 'Sponsored collections'
+    title: 'Featured mood placement',
+    copy: 'Restaurants pay monthly to appear in relevant mood moments like Comfort, Date, Reward, and Escape.',
+    value: 'Sponsored visibility'
   },
   {
-    title: 'Qualified Lead Analytics',
-    copy: 'Partners see map opens, saves, shares, booking clicks, and mood demand by intent state.',
-    value: 'Demand intelligence'
-  },
-  {
-    title: 'Premium Membership',
-    copy: 'Users unlock mood history, saved rituals, private guides, hidden city layers, and deeper recommendations.',
-    value: 'Recurring consumer revenue'
+    title: 'Sponsored mood collections',
+    copy: 'Brands and venues sponsor curated guides like Date Night, Solo Reset, and Comfort Week.',
+    value: 'Collection sponsorship'
   }
 ];
 
@@ -562,7 +557,8 @@ const scoreExperience = (experience: Experience, moodId: MoodId, contextId: Cont
   let score = 0;
   if (experience.moodIds.includes(moodId)) score += 4;
   if (experience.contextIds.includes(contextId)) score += 3;
-  if (experience.moodIds.some((id) => id === moodId)) score += 1;
+  // If both match, the experience is especially relevant.
+  if (experience.moodIds.includes(moodId) && experience.contextIds.includes(contextId)) score += 2;
   return score;
 };
 

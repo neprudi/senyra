@@ -9,7 +9,7 @@ import { usePrototype } from '@/lib/prototype-store';
 export const dynamic = 'force-dynamic';
 
 export default function ProfilePage() {
-  const { moodId, contextId, savedSlugs } = usePrototype();
+  const { moodId, contextId, savedSlugs, resetDemo } = usePrototype();
   const mood = getMood(moodId);
   const profile = getProfileArchetype(moodId);
   const balance = {
@@ -74,6 +74,13 @@ export default function ProfilePage() {
           <p className="mt-2 text-[1.1rem] leading-8 text-graphite">
             Senyra understands your mood. You do not need a meal. You need a feeling.
           </p>
+          <button
+            type="button"
+            onClick={resetDemo}
+            className="mt-4 inline-flex items-center justify-center rounded-full border border-white/80 bg-white/80 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-graphite shadow-soft transition hover:-translate-y-0.5"
+          >
+            Reset demo
+          </button>
         </section>
 
         <section className="panel-strong rounded-[1.8rem] p-5">

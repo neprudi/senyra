@@ -78,6 +78,9 @@ export default function BusinessPage() {
           <h3 className="mt-2 text-[1.55rem] font-semibold tracking-[-0.045em] leading-[0.98] text-graphite">
             Mood selection to partner lead.
           </h3>
+          <p className="mt-3 text-sm leading-7 text-cream-800/82">
+            Mood selection → Mood plan view → Map open / booking click → Partner lead
+          </p>
           <div className="mt-4 space-y-2">
             <FlowStep>1. Mood selection</FlowStep>
             <FlowStep>2. Mood plan view</FlowStep>

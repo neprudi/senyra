@@ -21,6 +21,7 @@ type PrototypeContextValue = {
   isSaved: (slug: string) => boolean;
   toggleTonight: (slug: string) => void;
   isTonight: (slug: string) => boolean;
+  resetDemo: () => void;
 };
 
 const STORAGE_KEY = 'senyra:prototype-state';
@@ -84,7 +85,15 @@ export function PrototypeProvider({ children }: { children: ReactNode }) {
             ? current.tonightSlugs.filter((item) => item !== slug)
             : [slug, ...current.tonightSlugs]
         })),
-      isTonight: (slug) => state.tonightSlugs.includes(slug)
+      isTonight: (slug) => state.tonightSlugs.includes(slug),
+      resetDemo: () => {
+        setState({
+          ...defaultState,
+          savedSlugs: [...defaultState.savedSlugs],
+          tonightSlugs: [...defaultState.tonightSlugs]
+        });
+        window.localStorage.removeItem(STORAGE_KEY);
+      }
     }),
     [state]
   );

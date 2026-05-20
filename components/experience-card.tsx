@@ -1,12 +1,9 @@
 "use client";
 
-import { useState } from 'react';
-import Link from 'next/link';
-import { ArrowRight, Bookmark, Share2 } from 'lucide-react';
+import { ArrowRight, Bookmark } from 'lucide-react';
 import { cn } from '@/components/cn';
 import { ArtPanel } from '@/components/art-panel';
-import { getMapsUrl, type Experience } from '@/lib/senyra';
-import { usePrototype } from '@/lib/prototype-store';
+import { type Experience } from '@/lib/senyra';
 
 type ExperienceCardProps = {
   experience: Experience;
@@ -17,36 +14,6 @@ type ExperienceCardProps = {
 };
 
 export function ExperienceCard({ experience, onOpen, saved, onToggleSave, compact = false }: ExperienceCardProps) {
-  const mapsUrl = getMapsUrl(experience.placeName);
-  const { toggleTonight, isTonight } = usePrototype();
-  const tonight = isTonight(experience.slug);
-  const [shareMessage, setShareMessage] = useState('');
-
-  const onShare = async () => {
-    const shareUrl = typeof window !== 'undefined' ? `${window.location.origin}/experience/${experience.slug}` : '';
-    try {
-      if (navigator.share && shareUrl) {
-        await navigator.share({
-          title: `Senyra: ${experience.title}`,
-          text: `${experience.placeName} - ${experience.whyThisWorks}`,
-          url: shareUrl
-        });
-        return;
-      }
-      if (shareUrl) {
-        await navigator.clipboard.writeText(shareUrl);
-        setShareMessage('Link copied.');
-        window.setTimeout(() => setShareMessage(''), 1500);
-      }
-    } catch {
-      if (shareUrl) {
-        await navigator.clipboard.writeText(shareUrl);
-        setShareMessage('Link copied.');
-        window.setTimeout(() => setShareMessage(''), 1500);
-      }
-    }
-  };
-
   return (
     <article className="soft-enter overflow-hidden rounded-[2rem] border border-white/80 bg-[rgba(255,253,249,0.82)] shadow-soft backdrop-blur-xl">
       <div className={cn(compact ? 'p-3' : 'p-4 sm:p-5')}>
@@ -77,14 +44,6 @@ export function ExperienceCard({ experience, onOpen, saved, onToggleSave, compac
                 {experience.placeName} - {experience.district}
               </p>
               <p className="max-w-[34ch] text-[15px] leading-7 text-cream-800/78">{experience.description}</p>
-              <button
-                type="button"
-                onClick={onOpen}
-                className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-700/72 transition hover:text-graphite"
-              >
-                Open detail
-                <ArrowRight className="h-3.5 w-3.5" />
-              </button>
             </div>
             <button
               type="button"
@@ -95,7 +54,7 @@ export function ExperienceCard({ experience, onOpen, saved, onToggleSave, compac
                   ? 'border-graphite/15 bg-graphite text-cream-50 shadow-glow'
                   : 'border-white/80 bg-white/80 text-graphite hover:bg-white'
               )}
-              aria-label={saved ? 'Remove from saved' : 'Save experience'}
+              aria-label={saved ? 'Remove from saved' : 'Save plan'}
             >
               <Bookmark className={cn('h-4.5 w-4.5', saved && 'fill-current')} />
             </button>
@@ -148,51 +107,24 @@ export function ExperienceCard({ experience, onOpen, saved, onToggleSave, compac
             ))}
           </div>
 
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex flex-wrap items-center gap-2">
-              <Link
-                href={mapsUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-graphite px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-50 transition duration-300 ease-out hover:-translate-y-0.5 hover:shadow-glow"
-              >
-                Open in Maps
-              </Link>
-              <button
-                type="button"
-                onClick={() => toggleTonight(experience.slug)}
-                className={cn(
-                  'inline-flex items-center gap-2 rounded-full border px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.24em] shadow-soft transition duration-300 ease-out hover:-translate-y-0.5',
-                  tonight
-                    ? 'border-graphite/15 bg-graphite text-cream-50 shadow-glow'
-                    : 'border-white/80 bg-white/80 text-graphite'
-                )}
-              >
-                Add to tonight plan
-              </button>
-              <button
-                type="button"
-                onClick={onToggleSave}
-                className="inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/80 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-graphite shadow-soft transition duration-300 ease-out hover:-translate-y-0.5"
-              >
-                <Bookmark className={cn('h-3.5 w-3.5', saved && 'fill-current')} />
-                {saved ? 'Saved' : 'Save plan'}
-              </button>
-              <button
-                type="button"
-                onClick={onShare}
-                className="inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/80 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-graphite shadow-soft transition duration-300 ease-out hover:-translate-y-0.5"
-              >
-                <Share2 className="h-3.5 w-3.5" />
-                Share
-              </button>
-            </div>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={onOpen}
+              className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-graphite px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-cream-50 transition duration-300 ease-out hover:-translate-y-0.5 hover:shadow-glow"
+            >
+              Open Details
+              <ArrowRight className="h-4 w-4" />
+            </button>
+            <button
+              type="button"
+              onClick={onToggleSave}
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/80 bg-white/80 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-graphite shadow-soft transition duration-300 ease-out hover:-translate-y-0.5"
+            >
+              <Bookmark className={cn('h-3.5 w-3.5', saved && 'fill-current')} />
+              Save
+            </button>
           </div>
-          {shareMessage ? (
-            <p className="pt-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-cream-700/65">
-              {shareMessage}
-            </p>
-          ) : null}
         </div>
       </div>
     </article>

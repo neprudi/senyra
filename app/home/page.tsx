@@ -83,6 +83,17 @@ export default function HomePage() {
           ))}
         </div>
 
+        <button
+          type="button"
+          onClick={() => {
+            setMoodId('comfort');
+            router.push('/context');
+          }}
+          className="inline-flex w-full items-center justify-center rounded-full border border-white/80 bg-white/80 px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-graphite shadow-soft transition hover:-translate-y-0.5"
+        >
+          Skip
+        </button>
+
         <section className="panel-strong rounded-[1.8rem] p-5">
           <div className="flex items-start justify-between gap-4">
             <div className="space-y-2">
