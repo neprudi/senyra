@@ -562,6 +562,11 @@ const scoreExperience = (experience: Experience, moodId: MoodId, contextId: Cont
   return score;
 };
 
+export const calculateMatchPercent = (experience: Experience, moodId: MoodId, contextId: ContextId) => {
+  const score = scoreExperience(experience, moodId, contextId);
+  return Math.round((score / 9) * 100);
+};
+
 export const getDiscoveryFeed = (moodId: MoodId, contextId: ContextId) =>
   [...experiences]
     .sort((a, b) => scoreExperience(b, moodId, contextId) - scoreExperience(a, moodId, contextId))
