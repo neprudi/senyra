@@ -57,16 +57,17 @@ export default function DiscoverPage() {
         ) : (
           <div className="space-y-4">
             {feed.map((experience) => (
-              <ExperienceCard
-                key={experience.slug}
-                experience={experience}
-                saved={isSaved(experience.slug)}
-                onToggleSave={() => toggleSaved(experience.slug)}
-                onOpen={() => router.push(`/experience/${experience.slug}`)}
-              />
-            ))}
-          </div>
-        )}
+            <ExperienceCard
+              key={experience.slug}
+              experience={experience}
+              saved={isSaved(experience.slug)}
+              onToggleSave={() => toggleSaved(experience.slug)}
+              onOpen={() => router.push(`/experience/${experience.slug}`)}
+              variant="feed"
+            />
+          ))}
+        </div>
+      )}
       </div>
     </AppFrame>
   );

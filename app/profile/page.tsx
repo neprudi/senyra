@@ -3,12 +3,14 @@
 import { AppFrame } from '@/components/app-frame';
 import { ArtPanel } from '@/components/art-panel';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { getMood, getProfileArchetype, plusBenefits } from '@/lib/senyra';
 import { usePrototype } from '@/lib/prototype-store';
 
 export const dynamic = 'force-dynamic';
 
 export default function ProfilePage() {
+  const router = useRouter();
   const { moodId, contextId, savedSlugs, resetDemo } = usePrototype();
   const mood = getMood(moodId);
   const profile = getProfileArchetype(moodId);
@@ -76,10 +78,13 @@ export default function ProfilePage() {
           </p>
           <button
             type="button"
-            onClick={resetDemo}
-            className="mt-4 inline-flex items-center justify-center rounded-full border border-white/80 bg-white/80 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-graphite shadow-soft transition hover:-translate-y-0.5"
+            onClick={() => {
+              resetDemo();
+              router.push('/onboarding');
+            }}
+            className="mt-4 inline-flex items-center justify-center rounded-full border border-red-200/60 bg-red-50/40 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-red-700/80 shadow-soft transition hover:-translate-y-0.5 hover:bg-red-50/60"
           >
-            Reset demo
+            Reset demo / Start over
           </button>
         </section>
 
